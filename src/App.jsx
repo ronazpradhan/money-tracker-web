@@ -7,6 +7,7 @@ const navItems = [
   { label: 'Features', href: '#features' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'About', href: '#about' },
+  { label: 'Terms', href: '#terms' },
   { label: 'FAQ', href: '#faq' },
 ];
 
@@ -89,6 +90,40 @@ const faqs = [
   {
     question: 'What is included in Pro?',
     answer: 'Pro is positioned around cloud sync, backup, longer analytics ranges, custom categories, imports, and premium themes.',
+  },
+];
+
+const terms = [
+  {
+    title: '1. Usage Limits',
+    text: 'Money Tracker provides a free tier with unlimited local storage and transactions. Cloud Sync and advanced features require an active Money Tracker Pro subscription.',
+  },
+  {
+    title: '2. Disclaimers',
+    text: 'The application is provided "as is", without warranty of any kind. Money Tracker is not a financial institution, and the data provided in the app is for personal tracking purposes only. We do not provide financial advice.',
+  },
+  {
+    title: '3. Limitation of Liability',
+    text: 'In no event shall Money Tracker or its developers be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, or other intangible losses, resulting from your use of the app.',
+  },
+];
+
+const privacy = [
+  {
+    title: '1. Data Collection & Analytics',
+    text: 'We gather absolutely no personally identifiable information (PII). We do not track your behavior, log your sessions, or run third-party advertising services inside the app.',
+  },
+  {
+    title: '2. Local Data Storage',
+    text: "By default, Money Tracker operates entirely offline. All your transactions, budgets, categories, and settings are saved on your phone's internal storage inside an AES-256 encrypted SQLite database. We do not have access to this data.",
+  },
+  {
+    title: '3. Cloud Sync (Pro Feature)',
+    text: 'If you choose to subscribe to Pro and enable Cloud Sync, your data is securely transmitted over HTTPS and stored in our secure database endpoint to allow multi-device syncing. You have the right to request deletion of your synced data at any time.',
+  },
+  {
+    title: '4. Biometric Authentication',
+    text: "Face Recognition and Fingerprint data are processed entirely by your device's native hardware. The app never sees or stores your biometric information.",
   },
 ];
 
@@ -311,6 +346,22 @@ function App() {
           </div>
         </section>
 
+        <section className="legal-section" id="terms">
+          <LegalPanel
+            eyebrow="Terms"
+            title="Terms of Service"
+            intro="Welcome to Money Tracker. By using our application, you agree to these Terms of Service."
+            items={terms}
+          />
+          <LegalPanel
+            eyebrow="Privacy"
+            title="Privacy Policy"
+            intro="Your privacy is critically important to us. We have built Money Tracker from the ground up to respect your personal financial data."
+            items={privacy}
+            id="privacy"
+          />
+        </section>
+
         <section className="faq-section" id="faq">
           <SectionIntro
             eyebrow="FAQ"
@@ -367,7 +418,15 @@ function App() {
         <div className="footer-columns">
           <FooterColumn title="Product" links={['Features', 'Pricing', 'About']} />
           <FooterColumn title="App" links={['Android', 'Cloud sync', 'CSV export']} />
-          <FooterColumn title="Contact" links={[contactEmail, 'Pro activation', `Copyright ${year}`]} />
+          <FooterColumn
+            title="Legal"
+            links={[
+              { label: 'Terms of Service', href: '#terms' },
+              { label: 'Privacy Policy', href: '#privacy' },
+              { label: `Copyright ${year}` },
+            ]}
+          />
+          <FooterColumn title="Contact" links={[contactEmail, 'Pro activation']} />
         </div>
       </footer>
     </>
@@ -384,12 +443,39 @@ function SectionIntro({ eyebrow, title, text }) {
   );
 }
 
+function LegalPanel({ eyebrow, title, intro, items, id }) {
+  return (
+    <article className="legal-panel" id={id}>
+      <p className="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <span className="legal-date">Last Updated: June 2026</span>
+      <p className="legal-intro">{intro}</p>
+      <div className="legal-list">
+        {items.map((item) => (
+          <section key={item.title}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+  );
+}
+
 function FooterColumn({ title, links }) {
   return (
     <div className="footer-column">
       <strong>{title}</strong>
       {links.map((link) => (
-        <span key={link}>{link}</span>
+        typeof link === 'string' ? (
+          <span key={link}>{link}</span>
+        ) : link.href ? (
+          <a key={link.label} href={link.href}>
+            {link.label}
+          </a>
+        ) : (
+          <span key={link.label}>{link.label}</span>
+        )
       ))}
     </div>
   );

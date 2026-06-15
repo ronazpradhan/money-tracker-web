@@ -19,34 +19,58 @@ const highlights = [
 
 const features = [
   {
-    title: 'Fast expense logging',
-    tag: 'Daily use',
-    description: 'Numpad entry, notes, categories, and recent history make tracking feel light enough to keep doing.',
+    title: 'No ads, no noise',
+    tag: 'Clean experience',
+    icon: 'noAds',
+    description: 'No banners, video ads, or sponsored clutter. Money Tracker stays focused on your spending, not someone else\'s campaign.',
   },
   {
-    title: 'Budget ring',
-    tag: 'Planning',
-    description: 'Set a monthly budget and see spent, remaining, and over-budget states without opening a spreadsheet.',
+    title: 'Works offline',
+    tag: 'Local first',
+    icon: 'offline',
+    description: 'Your core records stay available on-device, so adding and reviewing expenses feels fast even without an internet connection.',
   },
   {
-    title: 'Analytics dashboard',
-    tag: 'Insight',
-    description: 'Donut charts, weekly bars, category ranks, and Pro ranges show where money is actually moving.',
+    title: 'Custom categories',
+    tag: 'Flexible setup',
+    icon: 'categories',
+    description: 'Start with useful defaults, then create your own categories to match how you actually spend.',
   },
   {
-    title: 'Cloud sync',
-    tag: 'Pro',
-    description: 'Sync account data across devices and keep expenses backed up beyond a single install.',
+    title: 'Visual reports',
+    tag: 'Clear analytics',
+    icon: 'reports',
+    description: 'Donut charts, weekly bars, ranked categories, and longer Pro ranges make patterns easier to understand.',
   },
   {
-    title: 'CSV export and import',
-    tag: 'Control',
-    description: 'Export your records for reports, backup, migration, or deeper review in another tool.',
+    title: 'Many themes',
+    tag: 'Personal style',
+    icon: 'themes',
+    description: 'Choose from multiple polished themes, including dark-friendly options that keep the app easy on the eyes.',
   },
   {
-    title: 'App lock and biometrics',
-    tag: 'Security',
-    description: 'Protect personal finance data with passcode lock, security questions, and biometric unlock.',
+    title: 'Privacy first',
+    tag: 'Protected data',
+    icon: 'privacy',
+    description: 'Local data is encrypted with AES-256, protected by app lock options, and never used for advertising.',
+  },
+  {
+    title: '8 languages',
+    tag: 'Global ready',
+    icon: 'languages',
+    description: 'Use Money Tracker in English, Spanish, French, Portuguese, Hindi, German, Filipino, or Italian.',
+  },
+  {
+    title: 'CSV and Excel import',
+    tag: 'Easy migration',
+    icon: 'import',
+    description: 'Bring transactions from bank exports, spreadsheets, or another tracker, then review rows before saving.',
+  },
+  {
+    title: 'Transaction tags',
+    tag: 'Better grouping',
+    icon: 'tags',
+    description: 'Mark expenses with labels like business, travel, family, or anything else you want to filter later.',
   },
 ];
 
@@ -251,13 +275,14 @@ function App() {
         <section className="feature-section" id="features">
           <SectionIntro
             eyebrow="Features"
-            title="Everything a daily tracker needs"
-            text="The site copy mirrors the actual app: budget rings, category views, analytics, export tools, account sync, passcode lock, and premium themes."
+            title="A clean tracker with the controls that matter"
+            text="Money Tracker keeps the daily flow simple while still giving you privacy, categories, themes, reports, imports, languages, and tags when you need more structure."
           />
 
           <div className="feature-grid">
             {features.map((feature) => (
               <article className="feature-card" key={feature.title}>
+                <FeatureIcon name={feature.icon} />
                 <span>{feature.tag}</span>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
@@ -459,6 +484,86 @@ function LegalPanel({ eyebrow, title, intro, items, id }) {
         ))}
       </div>
     </article>
+  );
+}
+
+function FeatureIcon({ name }) {
+  const icons = {
+    noAds: (
+      <>
+        <path d="M5 5h14v14H5z" />
+        <path d="M5 19 19 5" />
+      </>
+    ),
+    offline: (
+      <>
+        <path d="M6 11a6 6 0 0 1 11.5-2.4" />
+        <path d="M18 14.5A4 4 0 0 0 14 11h-2.2" />
+        <path d="M4 20h15" />
+        <path d="M4 4l16 16" />
+      </>
+    ),
+    categories: (
+      <>
+        <path d="M4 5h7v7H4z" />
+        <path d="M13 5h7v7h-7z" />
+        <path d="M4 14h7v5H4z" />
+        <path d="M13 14h7v5h-7z" />
+      </>
+    ),
+    reports: (
+      <>
+        <path d="M5 19V9" />
+        <path d="M12 19V5" />
+        <path d="M19 19v-7" />
+        <path d="M3 19h18" />
+      </>
+    ),
+    themes: (
+      <>
+        <path d="M12 3a9 9 0 1 0 0 18" />
+        <path d="M12 3v18" />
+        <path d="M12 7h3" />
+        <path d="M12 12h5" />
+        <path d="M12 17h2" />
+      </>
+    ),
+    privacy: (
+      <>
+        <path d="M12 3 5 6v6c0 4.5 3 7.2 7 9 4-1.8 7-4.5 7-9V6z" />
+        <path d="M9 12.5 11 14.5 15.5 10" />
+      </>
+    ),
+    languages: (
+      <>
+        <path d="M4 5h9" />
+        <path d="M8.5 5c-.4 4-2 6.8-4.5 9" />
+        <path d="M6 9c1 2 2.4 3.6 4.5 5" />
+        <path d="M14 19l4-9 4 9" />
+        <path d="M15.4 16h5.2" />
+      </>
+    ),
+    import: (
+      <>
+        <path d="M12 4v10" />
+        <path d="M8 10l4 4 4-4" />
+        <path d="M5 18h14" />
+        <path d="M5 14v4" />
+        <path d="M19 14v4" />
+      </>
+    ),
+    tags: (
+      <>
+        <path d="M4 5h7l9 9-6 6-9-9z" />
+        <path d="M8 8h.01" />
+      </>
+    ),
+  };
+
+  return (
+    <svg className="feature-svg" viewBox="0 0 24 24" aria-hidden="true">
+      {icons[name]}
+    </svg>
   );
 }
 

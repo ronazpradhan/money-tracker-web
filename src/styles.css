@@ -491,14 +491,29 @@ h3 {
 }
 
 .feature-card {
-  min-height: 244px;
+  min-height: 272px;
   padding: 24px;
+}
+
+.feature-svg {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 18px;
+  padding: 10px;
+  color: var(--blue-dark);
+  border-radius: 8px;
+  background: rgba(23, 120, 212, 0.1);
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .feature-card > span,
 .plan-badge {
   display: inline-flex;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   padding: 6px 9px;
   border-radius: 999px;
   color: var(--blue-dark);

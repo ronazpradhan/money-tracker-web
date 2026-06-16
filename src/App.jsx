@@ -56,8 +56,8 @@ function App() {
     fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads')
       .then(res => res.json())
       .then(data => {
-        if (data && typeof data.value === 'number') {
-          setDownloadCount(data.value);
+        if (data && typeof data.count === 'number') {
+          setDownloadCount(data.count);
         }
       })
       .catch(err => console.error('Error fetching downloads:', err));
@@ -68,8 +68,8 @@ function App() {
       fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors/up')
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.value === 'number') {
-            setVisitorCount(data.value);
+          if (data && typeof data.count === 'number') {
+            setVisitorCount(data.count);
           }
         })
         .catch(err => console.error('Error incrementing visitors:', err));
@@ -78,8 +78,8 @@ function App() {
       fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors')
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.value === 'number') {
-            setVisitorCount(data.value);
+          if (data && typeof data.count === 'number') {
+            setVisitorCount(data.count);
           }
         })
         .catch(err => console.error('Error fetching visitors:', err));
@@ -90,8 +90,8 @@ function App() {
     fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads/up')
       .then(res => res.json())
       .then(data => {
-        if (data && typeof data.value === 'number') {
-          setDownloadCount(data.value);
+        if (data && typeof data.count === 'number') {
+          setDownloadCount(data.count);
         }
       })
       .catch(err => console.error('Error incrementing downloads:', err));

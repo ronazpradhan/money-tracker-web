@@ -41,6 +41,22 @@ function App() {
     }
   }, [showTerms, showPrivacy, isMobileMenuOpen]);
 
+  const [visitorCount, setVisitorCount] = useState(0);
+
+  useEffect(() => {
+    if (!hasIncrementedVisit) {
+      hasIncrementedVisit = true;
+      fetch('https://hitscounter.dev/api/hit?output=json&url=https%3A%2F%2Fmoney-tracker-android-web.vercel.app%2F')
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.total_hits === 'number') {
+            setVisitorCount(data.total_hits);
+          }
+        })
+        .catch(err => console.error('Error fetching visitors:', err));
+    }
+  }, []);
+
   // Sync virtual phone status clock
   useEffect(() => {
     const updateClock = () => {
@@ -662,12 +678,15 @@ function App() {
           {/* Column 4: Stats Counters */}
           <div className="footer-column">
             <h4 className="footer-column-title">App Statistics</h4>
-            <div style={{ marginTop: '12px' }}>
-              <img 
-                src="https://hits.sh/money-tracker-android-web.vercel.app.svg?view=total&label=Total%20Visitors&color=3d8bfd" 
-                alt="Total Visitors" 
-                style={{ display: 'block', maxWidth: '100%', height: '20px', borderRadius: '3px' }}
-              />
+            <div className="stats-minimal-container" style={{ marginTop: '12px' }}>
+              <div className="stat-minimal-item">
+                <span className="stat-minimal-label">
+                  <span className="live-dot" /> Total Visitors
+                </span>
+                <span className="stat-minimal-value">
+                  {visitorCount > 0 ? visitorCount.toLocaleString() : 'Loading...'}
+                </span>
+              </div>
             </div>
           </div>
         </div>

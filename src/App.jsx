@@ -652,7 +652,7 @@ function App() {
           Download the latest version of the Money Tracker Android APK. Safe, lightweight, and fast.
         </p>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '40px', flexWrap: 'wrap' }}>
-          <a href="/money-tracker.apk" download className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px' }} onClick={incrementDownload}>
+          <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.0/money-tracker.apk" download className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px' }} onClick={incrementDownload}>
             Download Direct APK
           </a>
           <a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '16px' }}>

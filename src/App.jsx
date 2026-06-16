@@ -42,16 +42,9 @@ function App() {
   }, [showTerms, showPrivacy, isMobileMenuOpen]);
 
   const [visitorCount, setVisitorCount] = useState(0);
-  const [downloadCount, setDownloadCount] = useState(() => {
-    const downloads = localStorage.getItem('mt_download_count');
-    if (!downloads) {
-      localStorage.setItem('mt_download_count', '0');
-      return 0;
-    }
-    return parseInt(downloads, 10);
-  });
+  const [downloadCount, setDownloadCount] = useState(0);
 
-  // Mount effect to increment visitor count exactly once (bypasses Strict Mode double-runs)
+  // Mount effect to fetch stats and increment visitors once
   useEffect(() => {
     // Force browser to start at the top of the page on refresh
     if ('scrollRestoration' in window.history) {
@@ -59,25 +52,49 @@ function App() {
     }
     window.scrollTo(0, 0);
 
-    const visits = localStorage.getItem('mt_visit_count');
+    // Fetch current download count
+    fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.value === 'number') {
+          setDownloadCount(data.value);
+        }
+      })
+      .catch(err => console.error('Error fetching downloads:', err));
+
+    // Increment visitor count exactly once per session load
     if (!hasIncrementedVisit) {
       hasIncrementedVisit = true;
-      let newCount = 1;
-      if (visits) {
-        newCount = parseInt(visits, 10) + 1;
-      }
-      localStorage.setItem('mt_visit_count', String(newCount));
-      setVisitorCount(newCount);
-    } else if (visits) {
-      setVisitorCount(parseInt(visits, 10));
+      fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors/up')
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.value === 'number') {
+            setVisitorCount(data.value);
+          }
+        })
+        .catch(err => console.error('Error incrementing visitors:', err));
+    } else {
+      // Just fetch the current visitor count
+      fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors')
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data.value === 'number') {
+            setVisitorCount(data.value);
+          }
+        })
+        .catch(err => console.error('Error fetching visitors:', err));
     }
   }, []);
 
   const incrementDownload = () => {
-    const downloads = localStorage.getItem('mt_download_count') || '0';
-    const newCount = parseInt(downloads, 10) + 1;
-    localStorage.setItem('mt_download_count', String(newCount));
-    setDownloadCount(newCount);
+    fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads/up')
+      .then(res => res.json())
+      .then(data => {
+        if (data && typeof data.value === 'number') {
+          setDownloadCount(data.value);
+        }
+      })
+      .catch(err => console.error('Error incrementing downloads:', err));
   };
 
   // Sync virtual phone status clock

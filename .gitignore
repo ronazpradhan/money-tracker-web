@@ -3,3 +3,4 @@ dist
 .env
 .env.local
 .vercel
+public/money-tracker.apk

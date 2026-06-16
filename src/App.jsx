@@ -41,61 +41,14 @@ function App() {
     }
   }, [showTerms, showPrivacy, isMobileMenuOpen]);
 
-  const [visitorCount, setVisitorCount] = useState(0);
-  const [downloadCount, setDownloadCount] = useState(0);
-
-  // Mount effect to fetch stats and increment visitors once
+  // Mount effect
   useEffect(() => {
     // Force browser to start at the top of the page on refresh
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-
-    // Fetch current download count
-    fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/downloadsapp')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.data && typeof data.data.up_count === 'number') {
-          setDownloadCount(data.data.up_count);
-        }
-      })
-      .catch(err => console.error('Error fetching downloads:', err));
-
-    // Increment visitor count exactly once per session load
-    if (!hasIncrementedVisit) {
-      hasIncrementedVisit = true;
-      fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/visitorsapp/up')
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.data && typeof data.data.up_count === 'number') {
-            setVisitorCount(data.data.up_count);
-          }
-        })
-        .catch(err => console.error('Error incrementing visitors:', err));
-    } else {
-      // Just fetch the current visitor count
-      fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/visitorsapp')
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.data && typeof data.data.up_count === 'number') {
-            setVisitorCount(data.data.up_count);
-          }
-        })
-        .catch(err => console.error('Error fetching visitors:', err));
-    }
   }, []);
-
-  const incrementDownload = () => {
-    fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/downloadsapp/up')
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.data && typeof data.data.up_count === 'number') {
-          setDownloadCount(data.data.up_count);
-        }
-      })
-      .catch(err => console.error('Error incrementing downloads:', err));
-  };
 
   // Sync virtual phone status clock
   useEffect(() => {
@@ -669,7 +622,7 @@ function App() {
           Download the latest version of the Money Tracker Android APK. Safe, lightweight, and fast.
         </p>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '40px', flexWrap: 'wrap' }}>
-          <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.0/money-tracker.apk" download className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px' }} onClick={incrementDownload}>
+          <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.0/money-tracker.apk" download className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px' }}>
             Download Direct APK
           </a>
           <a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '16px' }}>
@@ -718,24 +671,12 @@ function App() {
           {/* Column 4: Stats Counters */}
           <div className="footer-column">
             <h4 className="footer-column-title">App Statistics</h4>
-            <div className="stats-minimal-container">
-              {/* Visitor Counter */}
-              <div className="stat-minimal-item">
-                <span className="stat-minimal-label">
-                  <span className="live-dot" /> Total Visitors
-                </span>
-                <span className="stat-minimal-value">{visitorCount.toLocaleString()}</span>
-              </div>
-              {/* Download Counter */}
-              <div className="stat-minimal-item">
-                <span className="stat-minimal-label">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ color: 'var(--accent-color)' }}>
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                  </svg>
-                  Downloads
-                </span>
-                <span className="stat-minimal-value">{downloadCount.toLocaleString()}</span>
-              </div>
+            <div style={{ marginTop: '12px' }}>
+              <img 
+                src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fmoney-tracker-android-web.vercel.app%2F&label=Total+Visitors&icon=eye&color=%233d8bfd&message=&style=flat&tz=Asia%2FKathmandu" 
+                alt="Total Visitors" 
+                style={{ display: 'block', maxWidth: '100%', height: '24px', borderRadius: '4px' }}
+              />
             </div>
           </div>
         </div>

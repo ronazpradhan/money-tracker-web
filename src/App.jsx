@@ -53,11 +53,11 @@ function App() {
     window.scrollTo(0, 0);
 
     // Fetch current download count
-    fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads')
+    fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/downloadsapp')
       .then(res => res.json())
       .then(data => {
-        if (data && typeof data.count === 'number') {
-          setDownloadCount(data.count);
+        if (data && data.data && typeof data.data.up_count === 'number') {
+          setDownloadCount(data.data.up_count);
         }
       })
       .catch(err => console.error('Error fetching downloads:', err));
@@ -65,21 +65,21 @@ function App() {
     // Increment visitor count exactly once per session load
     if (!hasIncrementedVisit) {
       hasIncrementedVisit = true;
-      fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors/up')
+      fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/visitorsapp/up')
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.count === 'number') {
-            setVisitorCount(data.count);
+          if (data && data.data && typeof data.data.up_count === 'number') {
+            setVisitorCount(data.data.up_count);
           }
         })
         .catch(err => console.error('Error incrementing visitors:', err));
     } else {
       // Just fetch the current visitor count
-      fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/visitors')
+      fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/visitorsapp')
         .then(res => res.json())
         .then(data => {
-          if (data && typeof data.count === 'number') {
-            setVisitorCount(data.count);
+          if (data && data.data && typeof data.data.up_count === 'number') {
+            setVisitorCount(data.data.up_count);
           }
         })
         .catch(err => console.error('Error fetching visitors:', err));
@@ -87,11 +87,11 @@ function App() {
   }, []);
 
   const incrementDownload = () => {
-    fetch('https://api.counterapi.dev/v1/money-tracker-ronaj-pradhan/downloads/up')
+    fetch('https://api.counterapi.dev/v2/rownaz-shortss-team-4480/downloadsapp/up')
       .then(res => res.json())
       .then(data => {
-        if (data && typeof data.count === 'number') {
-          setDownloadCount(data.count);
+        if (data && data.data && typeof data.data.up_count === 'number') {
+          setDownloadCount(data.data.up_count);
         }
       })
       .catch(err => console.error('Error incrementing downloads:', err));

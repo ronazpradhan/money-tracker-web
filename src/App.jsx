@@ -41,15 +41,6 @@ function App() {
     }
   }, [showTerms, showPrivacy, isMobileMenuOpen]);
 
-  // Mount effect
-  useEffect(() => {
-    // Force browser to start at the top of the page on refresh
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
   // Sync virtual phone status clock
   useEffect(() => {
     const updateClock = () => {
@@ -673,9 +664,9 @@ function App() {
             <h4 className="footer-column-title">App Statistics</h4>
             <div style={{ marginTop: '12px' }}>
               <img 
-                src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fmoney-tracker-android-web.vercel.app%2F&label=Total+Visitors&icon=eye&color=%233d8bfd&message=&style=flat&tz=Asia%2FKathmandu" 
+                src="https://hits.sh/money-tracker-android-web.vercel.app.svg?view=total&label=Total%20Visitors&color=3d8bfd" 
                 alt="Total Visitors" 
-                style={{ display: 'block', maxWidth: '100%', height: '24px', borderRadius: '4px' }}
+                style={{ display: 'block', maxWidth: '100%', height: '20px', borderRadius: '3px' }}
               />
             </div>
           </div>

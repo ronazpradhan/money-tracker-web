@@ -57,6 +57,51 @@ function App() {
     }
   }, []);
 
+  // Save scroll position on scroll and beforeunload to survive refresh
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    const saveScroll = () => {
+      sessionStorage.setItem('mt_scroll_y', String(window.scrollY));
+    };
+    window.addEventListener('scroll', saveScroll, { passive: true });
+    window.addEventListener('beforeunload', saveScroll);
+    return () => {
+      window.removeEventListener('scroll', saveScroll);
+      window.removeEventListener('beforeunload', saveScroll);
+    };
+  }, []);
+
+  // Restore scroll position on page reload instantly using auto scrollBehavior bypass
+  useEffect(() => {
+    const savedScrollY = sessionStorage.getItem('mt_scroll_y');
+    if (savedScrollY) {
+      const scrollVal = parseInt(savedScrollY, 10);
+      const restoreScroll = () => {
+        const html = document.documentElement;
+        const prevStyle = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, scrollVal);
+        html.style.scrollBehavior = prevStyle;
+      };
+
+      // Try restoring immediately when mounted
+      restoreScroll();
+
+      // Retry after small delays to handle React DOM paints and layout shifts
+      const t1 = setTimeout(restoreScroll, 50);
+      const t2 = setTimeout(restoreScroll, 120);
+      const t3 = setTimeout(restoreScroll, 300);
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+      };
+    }
+  }, []);
+
   // Sync virtual phone status clock
   useEffect(() => {
     const updateClock = () => {

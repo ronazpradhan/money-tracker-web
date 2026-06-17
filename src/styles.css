@@ -1,25 +1,102 @@
 :root {
-  --bg-color: #fcfdfe;
-  --card-bg: #ffffff;
-  --card-border: #eef2f6;
-  --card-border-hover: #e2e8f0;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --accent-gradient: linear-gradient(135deg, #2563eb, #7c3aed);
-  --accent-color: #2563eb;
-  --accent-color-rgb: 37, 99, 235;
-  --success: #10b981;
-  --danger: #ef4444;
+  /* Base */
+  --bg: #f8fafc;
+  --bg-soft: #eef3f8;
+
+  /* Cards / sections */
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --surface-3: #e7eef6;
+  --surface-hover: #edf4fb;
+
+  /* Text */
+  --text: #172033;
+  --heading: #07111f;
+  --muted: #64748b;
+  --soft: #334155;
+
+  /* App accents */
+  --primary: #16a34a;
+  --primary-dark: #15803d;
+
+  --blue: #4f6bff;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --yellow: #eab308;
+
+  /* Borders / shadows */
+  --border: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.18);
+
+  --shadow-sm: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 20px 50px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 30px 80px rgba(15, 23, 42, 0.16);
+
+  /* Legacy aliases for safe fallback */
+  --bg-color: var(--bg);
+  --card-bg: var(--surface);
+  --card-border: var(--border);
+  --card-border-hover: var(--border-strong);
+  --text-primary: var(--heading);
+  --text-secondary: var(--muted);
+  --accent-color: var(--blue);
+  --success: var(--primary);
+  --danger: var(--pink);
   
-  /* Fonts */
   --font-display: 'Outfit', sans-serif;
   --font-sans: 'Inter', sans-serif;
-
-  /* Layout */
   --header-height: 76px;
   --max-width: 1140px;
 }
 
+[data-theme="dark"] {
+  /* Base */
+  --bg: #030f18;
+  --bg-soft: #061522;
+
+  /* Cards / sections */
+  --surface: #071824;
+  --surface-2: #0b2030;
+  --surface-3: #10283a;
+  --surface-hover: #123047;
+
+  /* Text */
+  --text: #f7fbff;
+  --heading: #ffffff;
+  --muted: #a9b7c7;
+  --soft: #d7e1ea;
+
+  /* App accents */
+  --primary: #22c55e;
+  --primary-dark: #15803d;
+
+  --blue: #6f8cff;
+  --purple: #a78bfa;
+  --pink: #ff5ca8;
+  --yellow: #facc15;
+
+  /* Borders / shadows */
+  --border: rgba(255, 255, 255, 0.11);
+  --border-strong: rgba(255, 255, 255, 0.2);
+
+  --shadow-sm: 0 10px 30px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 20px 50px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.42);
+  
+  --bg-color: var(--bg);
+  --card-bg: var(--surface);
+  --card-border: var(--border);
+  --card-border-hover: var(--border-strong);
+  --text-primary: var(--heading);
+  --text-secondary: var(--text);
+  --accent-color: var(--blue);
+  --success: var(--primary);
+  --danger: var(--pink);
+}
+
+body, section, div, button, a {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -73,8 +150,8 @@ body {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background-color: rgba(252, 253, 254, 0.8);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
@@ -103,7 +180,7 @@ body {
   justify-content: center;
   font-weight: 800;
   font-family: var(--font-display);
-  color: #ffffff;
+  color: var(--surface);
 }
 
 .brand-name {
@@ -351,7 +428,7 @@ body {
 }
 
 .theme-chip-btn {
-  background-color: #ffffff;
+  background-color: var(--surface);
   border: 1px solid var(--card-border);
   padding: 14px 18px;
   border-radius: 12px;
@@ -503,7 +580,7 @@ body {
   top: 20px;
   right: 20px;
   background: var(--accent-gradient);
-  color: #ffffff;
+  color: var(--surface);
   font-size: 9px;
   font-weight: 800;
   text-transform: uppercase;
@@ -632,7 +709,7 @@ body {
 
 .landing-footer {
   border-top: 1px solid var(--card-border);
-  background-color: #f8fafc;
+  background-color: var(--surface-2);
   padding: 80px 24px 48px;
 }
 
@@ -792,7 +869,7 @@ body {
 .phone-side-button {
   position: absolute;
   width: 3px;
-  background: linear-gradient(to bottom, #475569, #1e293b, #0f172a);
+  background: linear-gradient(to bottom, #475569, var(--surface), var(--surface-2));
   right: -9px; /* Sticks out by 3px relative to 6px border */
   border-radius: 0 3px 3px 0;
   z-index: 3;
@@ -823,7 +900,7 @@ body {
   transform: translateX(-50%);
   width: 44px;
   height: 2px;
-  background-color: #1e293b;
+  background-color: var(--surface);
   border-radius: 1px;
   z-index: 1000;
   opacity: 0.8;
@@ -835,7 +912,7 @@ body {
   width: 300px;
   height: 600px;
   background-color: #000000;
-  border: 6px solid #0f172a;
+  border: 6px solid var(--surface-2);
   border-radius: 32px;
   box-shadow: 
     0 24px 48px -12px rgba(15, 23, 42, 0.18),
@@ -873,7 +950,7 @@ body {
   justify-content: space-between;
   font-size: 9px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--surface);
   z-index: 999;
   user-select: none;
 }
@@ -963,7 +1040,7 @@ body {
 
 .btn-primary {
   background: var(--accent-gradient);
-  color: #ffffff;
+  color: var(--surface);
 }
 
 .btn-primary:hover {
@@ -1065,7 +1142,7 @@ body {
 
 .solution-card .card-pill {
   background: var(--accent-gradient);
-  color: #ffffff;
+  color: var(--surface);
 }
 
 .prob-sol-title {
@@ -1203,7 +1280,7 @@ body {
 
 .modal-close-x:hover {
   color: var(--text-primary);
-  background-color: #f1f5f9;
+  background-color: var(--surface-2);
 }
 
 .modal-body {
@@ -1236,7 +1313,7 @@ body {
 
 .modal-footer {
   padding: 24px 32px;
-  background-color: #f8fafc;
+  background-color: var(--surface-2);
   border-top: 1px solid var(--card-border);
   display: flex;
   justify-content: flex-end;

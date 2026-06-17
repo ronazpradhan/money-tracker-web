@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ThemeToggle from './components/ThemeToggle';
 
 const LogoSVG = ({ size = 32 }) => (
   <img 
@@ -34,6 +35,7 @@ export default function DownloadPage() {
           <LogoSVG size={32} />
           <span className="brand-name">Money Tracker</span>
         </a>
+          <ThemeToggle />
       </header>
 
       <section className="landing-section" style={{ paddingTop: '140px', paddingBottom: '60px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

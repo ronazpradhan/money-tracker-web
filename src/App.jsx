@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ThemeToggle from './components/ThemeToggle';
 import { themeScreenshots, faqsList, featuresList } from './data.jsx';
 
 const LogoSVG = ({ size = 32 }) => (
@@ -232,6 +233,7 @@ function App() {
           <button onClick={scrollToSection('security')} className="landing-nav-link">Security</button>
           <button onClick={scrollToSection('features')} className="landing-nav-link">Features</button>
           <button onClick={scrollToSection('faq')} className="landing-nav-link">FAQ</button>
+          <ThemeToggle />
           <a href="/money-tracker/download" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '13px', textDecoration: 'none' }}>
             Download APK
           </a>
@@ -262,6 +264,7 @@ function App() {
           <button type="button" className="mobile-nav-link" onClick={(e) => { scrollToSection('faq')(e); setIsMobileMenuOpen(false); }}>
             FAQ
           </button>
+          <div style={{marginTop: "12px", display: "flex", justifyContent: "center"}}><ThemeToggle /></div>
           <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', padding: '14px 0', textDecoration: 'none', textAlign: 'center', display: 'block' }} onClick={() => setIsMobileMenuOpen(false)}>
             Download APK
           </a>
@@ -305,7 +308,7 @@ function App() {
       </section>
 
       {/* Problem & Solution Section */}
-      <section className="landing-section animate-fade-up" id="problem-solution" style={{ borderTop: '1px solid #eef2f6', paddingTop: '100px' }}>
+      <section className="landing-section animate-fade-up" id="problem-solution" style={{ borderTop: '1px solid var(--border)', paddingTop: '100px' }}>
         <div className="landing-section-header">
           <span className="landing-section-tag">The Challenge & The Answer</span>
           <h2 className="landing-section-title">Cut through the financial noise</h2>
@@ -377,7 +380,7 @@ function App() {
       </section>
 
       {/* Feature Showcase 1: Security and SQLite */}
-      <section className="landing-section" id="security" style={{ borderTop: '1px solid #eef2f6', paddingTop: '100px' }}>
+      <section className="landing-section" id="security" style={{ borderTop: '1px solid var(--border)', paddingTop: '100px' }}>
         <div className="feature-showcase-row">
           <div className="feature-showcase-content animate-fade-up">
             <span className="feature-showcase-tag">Security Guard</span>
@@ -420,7 +423,7 @@ function App() {
       
 
       {/* Core Benefits Grid */}
-      <section className="landing-section" id="features" style={{ borderTop: '1px solid #eef2f6' }}>
+      <section className="landing-section" id="features" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="landing-section-header">
           <span className="landing-section-tag">Powerful Tools</span>
           <h2 className="landing-section-title">All details. No distraction.</h2>
@@ -443,7 +446,7 @@ function App() {
       </section>
 
       {/* Pricing Section */}
-      <section className="landing-section" id="pricing" style={{ borderTop: '1px solid #eef2f6' }}>
+      <section className="landing-section" id="pricing" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="landing-section-header">
           <span className="landing-section-tag">Availability</span>
           <h2 className="landing-section-title">Free offline app</h2>
@@ -479,7 +482,7 @@ function App() {
       </section>
 
       {/* FAQ Accordions Section */}
-      <section className="landing-section" id="faq" style={{ borderTop: '1px solid #eef2f6' }}>
+      <section className="landing-section" id="faq" style={{ borderTop: '1px solid var(--border)' }}>
         <div className="landing-section-header">
           <span className="landing-section-tag">FAQ</span>
           <h2 className="landing-section-title">Commonly asked questions</h2>
@@ -517,7 +520,7 @@ function App() {
       </section>
 
       {/* Direct Download Section */}
-      <section id="download" className="landing-section" style={{ borderTop: '1px solid #eef2f6', textAlign: 'center', padding: '120px 24px' }}>
+      <section id="download" className="landing-section" style={{ borderTop: '1px solid var(--border)', textAlign: 'center', padding: '120px 24px' }}>
         <h2 className="landing-section-title" style={{ fontSize: '48px' }}>Start Tracking Your Budget</h2>
         <p className="landing-section-desc" style={{ fontSize: '18px', marginTop: '16px' }}>
           Download the latest version of the Money Tracker Android APK. Safe, offline, and fast.

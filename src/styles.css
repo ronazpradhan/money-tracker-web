@@ -906,7 +906,7 @@ body {
   position: relative;
   width: 300px;
   height: 600px;
-  background-color: var(--surface);
+  background-color: #000000;
   border: 6px solid #0f172a;
   border-radius: 32px;
   box-shadow: 
@@ -929,7 +929,7 @@ body {
   transform: translateX(-50%);
   width: 8px;
   height: 8px;
-  background-color: var(--bg);
+  background-color: #080c14;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 50%;
   z-index: 1000;
@@ -938,7 +938,7 @@ body {
 
 .phone-status-bar {
   height: 22px;
-  background-color: var(--surface);
+  background-color: #0d121f;
   padding: 0 16px;
   display: flex;
   align-items: center;
@@ -961,7 +961,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: var(--surface);
+  background-color: #000000;
   border-radius: 26px; /* Smooth clipping inside 32px border with 6px bezel */
   overflow: hidden;
 }
@@ -976,7 +976,7 @@ body {
 /* Android virtual navigation bar styling (Samsung styling) */
 .phone-nav-bar {
   height: 28px;
-  background-color: var(--surface);
+  background-color: #0d121f;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -1205,7 +1205,7 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--text-secondary);
+  background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
@@ -1363,7 +1363,7 @@ body.modal-open {
 .hamburger-bar {
   width: 100%;
   height: 2px;
-  background-color: var(--surface);
+  background-color: var(--text-primary);
   border-radius: 2px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: left center;

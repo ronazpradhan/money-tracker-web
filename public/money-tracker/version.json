@@ -4,6 +4,6 @@
   "minimumBuild": 18,
   "title": "New update available",
   "message": "Money Tracker v1.0.20 is available with the latest app improvements and fixes.",
-  "apkUrl": "https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.20/MoneyTracker-v1.0.20.apk",
+  "apkUrl": "https://money-tracker-android-web.vercel.app/money-tracker/download",
   "forceUpdate": false
 }

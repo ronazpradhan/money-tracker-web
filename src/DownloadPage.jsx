@@ -49,7 +49,7 @@ export default function DownloadPage() {
             </p>
           </div>
 
-          <div style={{ backgroundColor: 'rgba(37, 99, 235, 0.04)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid rgba(37, 99, 235, 0.1)' }}>
+          <div style={{ backgroundColor: 'rgba(37, 99, 235, 0.08)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid rgba(37, 99, 235, 0.1)' }}>
             <div style={{ fontSize: '13px', color: 'var(--accent-color)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
             <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.20</div>
             <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 20</div>
@@ -71,7 +71,7 @@ export default function DownloadPage() {
               <li>Your local app data should stay safe, but export a backup before updating</li>
             </ol>
 
-            <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.05)', borderLeft: '4px solid var(--danger)', padding: '20px', borderRadius: '4px 12px 12px 4px', marginBottom: '24px' }}>
+            <div style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)', borderLeft: '4px solid var(--danger)', padding: '20px', borderRadius: '4px 12px 12px 4px', marginBottom: '24px' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}>
                   <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
@@ -84,7 +84,7 @@ export default function DownloadPage() {
               </div>
             </div>
 
-            <div style={{ backgroundColor: 'rgba(245, 158, 11, 0.05)', borderLeft: '4px solid #f59e0b', padding: '20px', borderRadius: '4px 12px 12px 4px' }}>
+            <div style={{ backgroundColor: 'rgba(245, 158, 11, 0.1)', borderLeft: '4px solid #f59e0b', padding: '20px', borderRadius: '4px 12px 12px 4px' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}>
                   <circle cx="12" cy="12" r="10" />

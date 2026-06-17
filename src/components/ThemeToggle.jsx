@@ -21,26 +21,26 @@ export default function ThemeToggle() {
       onClick={toggleTheme}
       title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       style={{
-        background: 'transparent',
-        border: '1px solid var(--border-strong)',
-        color: 'var(--text-primary)',
+        background: 'var(--surface-2)',
+        border: '1px solid var(--border)',
+        color: 'var(--heading)',
         cursor: 'pointer',
-        padding: '6px 12px',
-        borderRadius: '8px',
+        padding: '8px 16px',
+        borderRadius: '99px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '6px',
+        gap: '8px',
         fontSize: '14px',
-        fontWeight: '500',
+        fontWeight: '600',
         fontFamily: 'var(--font-sans)',
         transition: 'all 0.2s ease',
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = 'var(--surface-hover)';
+        e.currentTarget.style.backgroundColor = 'var(--surface-3)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = 'transparent';
+        e.currentTarget.style.backgroundColor = 'var(--surface-2)';
       }}
     >
       {theme === 'light' ? (

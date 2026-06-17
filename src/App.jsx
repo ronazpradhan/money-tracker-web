@@ -234,7 +234,7 @@ function App() {
           <button onClick={scrollToSection('features')} className="landing-nav-link">Features</button>
           <button onClick={scrollToSection('faq')} className="landing-nav-link">FAQ</button>
           <ThemeToggle />
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '13px', textDecoration: 'none' }}>
+          <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
             Download APK
           </a>
         </nav>
@@ -265,7 +265,7 @@ function App() {
             FAQ
           </button>
           <div style={{marginTop: "12px", display: "flex", justifyContent: "center"}}><ThemeToggle /></div>
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', padding: '14px 0', textDecoration: 'none', textAlign: 'center', display: 'block' }} onClick={() => setIsMobileMenuOpen(false)}>
+          <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', textDecoration: 'none', textAlign: 'center', display: 'block' }} onClick={() => setIsMobileMenuOpen(false)}>
             Download APK
           </a>
         </nav>
@@ -456,7 +456,7 @@ function App() {
         </div>
 
         <div className="pricing-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-          <div className="pricing-card popular" style={{ borderColor: 'var(--success)', boxShadow: '0 20px 48px rgba(16, 185, 129, 0.06)' }}>
+          <div className="pricing-card popular" style={{ borderColor: 'var(--success)', boxShadow: 'var(--shadow-md)' }}>
             <h3 className="pricing-name">Offline Android App</h3>
             <p className="pricing-desc">Everything you need to track your daily expenses without an account.</p>
             <div className="pricing-price">
@@ -476,7 +476,7 @@ function App() {
                 No account setup
               </li>
             </ul>
-            <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', background: 'linear-gradient(135deg, #10b981, #059669)', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Download APK</a>
+            <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Download APK</a>
           </div>
         </div>
       </section>
@@ -526,7 +526,7 @@ function App() {
           Download the latest version of the Money Tracker Android APK. Safe, offline, and fast.
         </p>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '40px', flexWrap: 'wrap' }}>
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px', textDecoration: 'none' }}>
+          <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
             Download APK
           </a>
         </div>
@@ -588,7 +588,7 @@ function App() {
 
         <div className="footer-bottom">
           <div className="footer-copyright">
-            &copy; {new Date().getFullYear()} Money Tracker. All rights reserved. Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--accent-color)', textDecoration: 'none', fontWeight: '600', transition: 'color 0.2s ease' }} onMouseEnter={(e) => e.target.style.color = '#7c3aed'} onMouseLeave={(e) => e.target.style.color = 'var(--accent-color)'}>Ronaj Pradhan</a>.
+            &copy; {new Date().getFullYear()} Money Tracker. All rights reserved. Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer" className="footer-author-link">Ronaj Pradhan</a>.
           </div>
           <div style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>
             Offline Android App
@@ -625,7 +625,7 @@ function App() {
               <p>In no event shall Money Tracker or its developers be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, or other intangible losses, resulting from your use of the app.</p>
             </div>
             <div className="modal-footer">
-              <button className="btn btn-primary" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => setShowTerms(false)}>
+              <button className="btn btn-primary" onClick={() => setShowTerms(false)}>
                 I Accept these Terms
               </button>
             </div>
@@ -662,7 +662,7 @@ function App() {
               <p>Face Recognition and Fingerprint data are processed entirely by your device's native hardware. The app never sees or stores your biometric information.</p>
             </div>
             <div className="modal-footer">
-              <button className="btn btn-secondary" style={{ padding: '10px 20px', fontSize: '14px' }} onClick={() => setShowPrivacy(false)}>
+              <button className="btn btn-secondary" onClick={() => setShowPrivacy(false)}>
                 Close
               </button>
             </div>

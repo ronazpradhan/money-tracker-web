@@ -1490,6 +1490,20 @@ body.modal-open {
 }
 
 @media (max-width: 640px) {
+    .phone-mockup-wrapper {
+      transform: scale(0.85);
+      transform-origin: top center;
+      margin-bottom: -40px;
+    }
+    .landing-hero {
+      padding-top: 100px;
+      gap: 32px;
+    }
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
   .hero-title {
     font-size: 44px;
   }

@@ -39,7 +39,7 @@ export default function DownloadPage() {
       </header>
 
       <section className="landing-section" style={{ paddingTop: '140px', paddingBottom: '60px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="animate-fade-up" style={{ maxWidth: '600px', width: '100%', backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '20px', padding: '48px 40px', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)' }}>
+        <div className="animate-fade-up" style={{ maxWidth: '600px', width: '100%', backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '20px', padding: '32px 24px', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)' }}>
           
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '36px' }}>
             <LogoSVG size={88} />

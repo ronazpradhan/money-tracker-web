@@ -4,6 +4,6 @@
   "minimumBuild": 18,
   "title": "You're up to date",
   "message": "You are using the latest version of Money Tracker.",
-  "apkUrl": "https://money-tracker-android-web.vercel.app/money-tracker/download",
+  "apkUrl": "https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.18/MoneyTracker-v1.0.18.apk",
   "forceUpdate": false
 }

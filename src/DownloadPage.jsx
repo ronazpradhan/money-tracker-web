@@ -54,7 +54,7 @@ export default function DownloadPage() {
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.20/MoneyTracker-v1.0.20.apk" className="btn btn-primary" style={{ padding: '18px 32px', fontSize: '16px', fontWeight: '600', width: '100%', display: 'inline-block', textAlign: 'center', textDecoration: 'none', borderRadius: '12px' }}>
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.20/MoneyTracker-v1.0.20.apk" className="btn btn-primary" style={{ padding: '18px 32px', fontSize: '16px', fontWeight: '600', width: '100%', display: 'inline-block', textAlign: 'center', textDecoration: 'none', borderRadius: '12px' }}>
               Download APK
             </a>
           </div>

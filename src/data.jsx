@@ -9,45 +9,48 @@ export const themeScreenshots = [
 
 export const faqsList = [
   {
-    q: 'Is my financial data encrypted locally?',
-    a: "Yes, our Android application compiles all transactions inside an AES-256 encrypted SQLite file hosted inside your device's secure sandboxed storage. We have absolutely no background access to your data."
+    q: 'Does Money Tracker need an account?',
+    a: 'No. The app works without login or signup.'
   },
   {
-    q: 'How does the backend Cloud Synchronization work?',
-    a: 'By subscribing to the Pro plan, you can enable Cloud Sync. The app securely uploads your local ledger over HTTPS to our NestJS backend API endpoints, updating your PostgreSQL remote database. If you sign in on a secondary device, it automatically pulls and reconciles your history.'
+    q: 'Where is my data stored?',
+    a: 'Your transactions are stored locally on your Android device.'
   },
   {
-    q: 'Can I import existing spreadsheets or bank statements?',
-    a: 'Yes, Pro members can import CSV files. You can map columns for Date, Amount, Category, and Notes inside the app settings to quickly migrate from your previous tracking software.'
+    q: 'Does the app use cloud sync?',
+    a: 'No. Money Tracker currently does not use cloud sync. Use export/import backup to move or restore data manually.'
   },
   {
-    q: 'Does the application run without an internet connection?',
-    a: 'Absolutely. Money Tracker operates entirely offline. All core features like transaction entries, budget tracking, categories, and charts are fully available without internet access. A network connection is only needed if you choose to sync with the NestJS cloud database.'
+    q: 'What happens if I uninstall the app?',
+    a: 'Local data may be removed. Export a backup from Settings before uninstalling or updating.'
   },
   {
-    q: 'What languages does Money Tracker support?',
-    a: 'The application is localized in 9 languages including English, Spanish, French, Portuguese, Hindi, German, Filipino, Italian, and Japanese. You can change your preferred language instantly in the app settings.'
+    q: 'How do updates work?',
+    a: 'The app checks a public version file from the official website and opens the download page when a newer APK is available.'
   },
   {
-    q: 'How can I request support or submit feature ideas?',
-    a: 'We love user feedback! You can reach out directly via email at support@moneytracker.local or hi.ronajpradhan@gmail.com with support queries or ideas for new features.'
+    q: 'Why does Android show a Play Protect warning?',
+    a: 'Android may show a warning because the APK is distributed directly from the official website and is not yet listed on Google Play. Only install Money Tracker from the official download page.'
+  },
+  {
+    q: 'Can I export my data?',
+    a: 'Yes. You can export JSON backups and CSV files from the app.'
   }
 ];
 
 export const featuresList = [
   {
-    title: '16 Main Categories',
-    desc: 'Map logs to custom color chips covering Dining, Housing, Bills, groceries, transport, subscriptions, and travel.',
+    title: 'Income & Expense Tracking',
+    desc: 'Track both money coming in and money going out.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v12M17 12H7" />
+        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
       </svg>
     )
   },
   {
-    title: 'Smart Budget Ring',
-    desc: 'See remaining budget balance compared to spending limits in real time. Progress circle shifts color if budget exceeds limits.',
+    title: 'Monthly Budget Limit',
+    desc: 'Set a monthly spending limit and see how much remains.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
@@ -56,26 +59,8 @@ export const featuresList = [
     )
   },
   {
-    title: 'Data CSV Backups',
-    desc: 'Compile transactions and download standard CSV spreadsheet sheets or restore backups in one click.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
-      </svg>
-    )
-  },
-  {
-    title: 'Historical Analytics',
-    desc: 'Visualize category spending percentages and trends over weekly, monthly, and yearly intervals.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 20V10M12 20V4M6 20v-6"/>
-      </svg>
-    )
-  },
-  {
-    title: 'Instant Search & Filter',
-    desc: 'Search through thousands of historical logs by category, amount, tag, or description in milliseconds.',
+    title: 'Transaction History',
+    desc: 'Search and filter your past records.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="11" cy="11" r="8"/>
@@ -84,8 +69,39 @@ export const featuresList = [
     )
   },
   {
-    title: 'Granular Tagging',
-    desc: 'Append multiple tags (e.g. #gifts, #vacation) to transactions for precise analysis beyond main categories.',
+    title: 'Analytics',
+    desc: 'View spending patterns and category breakdowns.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M18 20V10M12 20V4M6 20v-6"/>
+      </svg>
+    )
+  },
+  {
+    title: 'Manual Backups',
+    desc: 'Export and import JSON backup files manually.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+      </svg>
+    )
+  },
+  {
+    title: 'CSV Export',
+    desc: 'Export transaction records for spreadsheets.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <polyline points="14 2 14 8 20 8" />
+        <line x1="16" y1="13" x2="8" y2="13" />
+        <line x1="16" y1="17" x2="8" y2="17" />
+        <polyline points="10 9 9 9 8 9" />
+      </svg>
+    )
+  },
+  {
+    title: 'Categories & Tags',
+    desc: 'Organize transactions with categories and notes/tags if supported.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01"/>
@@ -93,8 +109,8 @@ export const featuresList = [
     )
   },
   {
-    title: 'Secure Locks',
-    desc: 'Protect your ledger using native biometric fingerprint scan, face unlock, or numerical app passcodes.',
+    title: 'App Lock',
+    desc: 'Protect the app using passcode or biometrics if enabled.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
@@ -103,22 +119,11 @@ export const featuresList = [
     )
   },
   {
-    title: '9 Localized Languages',
-    desc: 'Toggle instantly between English, Spanish, French, Portuguese, Hindi, German, Filipino, Italian, and Japanese.',
+    title: 'Offline Use',
+    desc: 'Use the app without login or cloud sync.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>
-      </svg>
-    )
-  },
-  {
-    title: '150+ Currencies',
-    desc: 'Track transactions in any global currency with customized formatting, symbols, and decimal precision.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="2" y1="12" x2="22" y2="12"/>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
       </svg>
     )
   }

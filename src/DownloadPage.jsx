@@ -49,12 +49,12 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'rgba(37, 99, 235, 0.04)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid rgba(37, 99, 235, 0.1)' }}>
             <div style={{ fontSize: '13px', color: 'var(--accent-color)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.19</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 19</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.20</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 20</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.19/MoneyTracker-v1.0.19.apk" className="btn btn-primary" style={{ padding: '18px 32px', fontSize: '16px', fontWeight: '600', width: '100%', display: 'inline-block', textAlign: 'center', textDecoration: 'none', borderRadius: '12px' }}>
+            <a href="https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.20/MoneyTracker-v1.0.20.apk" className="btn btn-primary" style={{ padding: '18px 32px', fontSize: '16px', fontWeight: '600', width: '100%', display: 'inline-block', textAlign: 'center', textDecoration: 'none', borderRadius: '12px' }}>
               Download APK
             </a>
           </div>

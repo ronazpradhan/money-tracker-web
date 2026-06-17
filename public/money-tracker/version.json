@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.0.18",
-  "latestBuild": 18,
+  "latestVersion": "1.0.19",
+  "latestBuild": 19,
   "minimumBuild": 18,
-  "title": "You're up to date",
-  "message": "You are using the latest version of Money Tracker.",
-  "apkUrl": "https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.18/MoneyTracker-v1.0.18.apk",
+  "title": "New update available",
+  "message": "Money Tracker v1.0.19 is available. This update includes the latest offline-only improvements and app fixes.",
+  "apkUrl": "https://github.com/ronazpradhan/money-tracker/releases/download/v1.0.19/MoneyTracker-v1.0.19.apk",
   "forceUpdate": false
 }

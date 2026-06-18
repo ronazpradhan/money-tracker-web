@@ -239,17 +239,20 @@ function App() {
           </a>
         </nav>
 
-        {/* Mobile Hamburger Button */}
-        <button 
-          type="button"
-          className={`hamburger-menu ${isMobileMenuOpen ? 'open' : ''}`}
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span className="hamburger-bar" />
-          <span className="hamburger-bar" />
-          <span className="hamburger-bar" />
-        </button>
+        {/* Mobile Header Controls */}
+        <div className="mobile-header-controls">
+          <ThemeToggle />
+          <button 
+            type="button"
+            className={`hamburger-menu ${isMobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            <span className="hamburger-bar" />
+            <span className="hamburger-bar" />
+            <span className="hamburger-bar" />
+          </button>
+        </div>
       </header>
 
       {/* Mobile Navigation Drawer */}
@@ -264,7 +267,6 @@ function App() {
           <button type="button" className="mobile-nav-link" onClick={(e) => { scrollToSection('faq')(e); setIsMobileMenuOpen(false); }}>
             FAQ
           </button>
-          <div style={{marginTop: "12px", display: "flex", justifyContent: "center"}}><ThemeToggle /></div>
           <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', textDecoration: 'none', textAlign: 'center', display: 'block' }} onClick={() => setIsMobileMenuOpen(false)}>
             Download APK
           </a>
@@ -411,7 +413,7 @@ function App() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                <span><strong>Manual backups:</strong> Export JSON backups and CSV files. Works entirely without internet.</span>
+                <span><strong>Manual backups:</strong> Export CSV files. Works entirely without internet.</span>
               </li>
             </ul>
           </div>
@@ -564,7 +566,6 @@ function App() {
               <li><button onClick={() => setShowPrivacy(true)} className="footer-link-item-btn">Privacy Policy</button></li>
               <li><button onClick={() => setShowTerms(true)} className="footer-link-item-btn">Terms of Service</button></li>
               <li><a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support" className="footer-link-item-btn" style={{ textDecoration: 'none' }}>Email Support</a></li>
-              <li><a href="mailto:support@moneytracker.local" className="footer-link-item-btn" style={{ textDecoration: 'none' }}>Direct Support</a></li>
             </ul>
           </div>
 
@@ -588,7 +589,8 @@ function App() {
 
         <div className="footer-bottom">
           <div className="footer-copyright">
-            &copy; {new Date().getFullYear()} Money Tracker. All rights reserved. Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer" className="footer-author-link">Ronaj Pradhan</a>.
+            <span>&copy; {new Date().getFullYear()} Money Tracker. All rights reserved.</span>
+            <span className="footer-made-by"> Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer" className="footer-author-link">Ronaj Pradhan</a>.</span>
           </div>
           <div style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>
             Offline Android App

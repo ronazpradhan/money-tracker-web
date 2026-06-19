@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import ThemeToggle from './components/ThemeToggle';
 
 const LogoSVG = ({ size = 32 }) => (
-  <img 
-    src="/apple-touch-icon.png" 
-    alt="Money Tracker" 
-    style={{ 
-      width: size, 
-      height: size, 
-      display: 'block', 
-      flexShrink: 0, 
+  <img
+    src="/apple-touch-icon.png"
+    alt="Money Tracker"
+    style={{
+      width: size,
+      height: size,
+      display: 'block',
+      flexShrink: 0,
       borderRadius: '6px',
       objectFit: 'contain'
-    }} 
+    }}
   />
 );
 
@@ -35,12 +35,12 @@ export default function DownloadPage() {
           <LogoSVG size={32} />
           <span className="brand-name">Money Tracker</span>
         </a>
-          <ThemeToggle />
+        <ThemeToggle />
       </header>
 
       <section className="landing-section" style={{ paddingTop: '140px', paddingBottom: '60px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="animate-fade-up" style={{ maxWidth: '600px', width: '100%', backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '20px', padding: '32px 24px', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)' }}>
-          
+
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '36px' }}>
             <LogoSVG size={88} />
             <h1 className="landing-section-title" style={{ fontSize: '36px', marginTop: '24px', marginBottom: '12px' }}>Money Tracker</h1>
@@ -51,12 +51,12 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
             <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.23</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 23</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.24</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 24</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.23/MoneyTracker-v1.0.23.apk" className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.24/MoneyTracker-v1.0.24.apk" className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
               Download APK
             </a>
           </div>

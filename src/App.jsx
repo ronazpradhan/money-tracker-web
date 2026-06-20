@@ -314,7 +314,7 @@ function App() {
             loading="eager"
             style={{ 
               width: '100%', 
-              maxWidth: '400px', 
+              maxWidth: '300px', 
               height: 'auto', 
               borderRadius: '24px', 
               boxShadow: 'var(--shadow-lg)',

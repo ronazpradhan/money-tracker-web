@@ -306,7 +306,20 @@ function App() {
           </div>
         </div>
 
-        <PhoneMockup imgSrc="/dark theme.jpg" altText="Money Tracker Main Dashboard" />
+        <div className="animate-fade-up hero-visual" style={{ animationDelay: '0.2s', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img 
+            src="/homepage.jpg" 
+            alt="Money Tracker Dashboard" 
+            style={{ 
+              width: '100%', 
+              maxWidth: '400px', 
+              height: 'auto', 
+              borderRadius: '24px', 
+              boxShadow: 'var(--shadow-lg)',
+              border: '1px solid var(--border)'
+            }} 
+          />
+        </div>
       </section>
 
       {/* Problem & Solution Section */}

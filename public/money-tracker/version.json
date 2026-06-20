@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.0.24",
-  "latestBuild": 24,
+  "latestVersion": "1.0.25",
+  "latestBuild": 25,
   "minimumBuild": 18,
   "title": "New update available",
-  "message": "Money Tracker v1.0.24 is available with the latest app improvements and fixes.",
+  "message": "Money Tracker v1.0.25 is available with the latest app improvements and fixes.",
   "apkUrl": "https://money-tracker-android-web.vercel.app/money-tracker/download",
   "forceUpdate": false
 }

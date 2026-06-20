@@ -51,12 +51,12 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
             <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.24</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 24</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.25</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 25</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.24/MoneyTracker-v1.0.24.apk" className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.25/MoneyTracker-v1.0.25.apk" className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
               Download APK
             </a>
           </div>

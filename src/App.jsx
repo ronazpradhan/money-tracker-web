@@ -310,6 +310,8 @@ function App() {
           <img 
             src="/homepage.jpg" 
             alt="Money Tracker Dashboard" 
+            fetchPriority="high"
+            loading="eager"
             style={{ 
               width: '100%', 
               maxWidth: '400px', 

@@ -142,81 +142,7 @@ function App() {
     });
   };
 
-  // Reusable Smartphone Frame component
-  const PhoneMockup = ({ imgSrc, altText }) => (
-    <div className="phone-mockup-wrapper">
-      <div className="phone-glow" />
-      
-      <div className="phone-frame">
-        {/* Unbranded Samsung side keys on right */}
-        <div className="phone-side-button volume-up" />
-        <div className="phone-side-button volume-down" />
-        <div className="phone-side-button power" />
 
-        {/* Top speaker grill */}
-        <div className="phone-speaker" />
-        
-        {/* Centered punch-hole camera */}
-        <div className="phone-camera-hole" />
-        
-        {/* Mockup Viewport */}
-        <div className="phone-viewport">
-          {/* Status Bar */}
-          <div className="phone-status-bar">
-            <span>{currentTime}</span>
-            <div className="status-bar-icons">
-              {/* Wifi */}
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <path d="M12 20h.01M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 14 0M1.5 9.5a15 15 0 0 1 21 0" />
-              </svg>
-              {/* Android Signal Icon */}
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M2 22h20V2L2 22z" fillOpacity="0.3" />
-                <path d="M2 22h16V6L2 22z" />
-              </svg>
-              {/* Battery Percentage */}
-              <span style={{ fontSize: '8px', opacity: 0.95, letterSpacing: '-0.2px' }}>85%</span>
-              {/* Battery */}
-              <svg width="12" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <rect width="16" height="10" x="2" y="7" rx="2" ry="2" />
-                <line x1="22" x2="22" y1="11" y2="13" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Screenshot Content */}
-          <img 
-            src={imgSrc} 
-            alt={altText}
-          />
-
-          {/* Virtual Android Navigation Bar (Samsung default: Recents, Home, Back) */}
-          <div className="phone-nav-bar">
-            <div className="nav-btn">
-              {/* Recents */}
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-                <line x1="8" y1="5" x2="8" y2="19" />
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="16" y1="5" x2="16" y2="19" />
-              </svg>
-            </div>
-            <div className="nav-btn">
-              {/* Home */}
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                <rect x="5" y="5" width="14" height="14" rx="4" />
-              </svg>
-            </div>
-            <div className="nav-btn">
-              {/* Back */}
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div className="landing-wrapper">
@@ -437,7 +363,25 @@ function App() {
             </ul>
           </div>
           
-          <PhoneMockup imgSrc="/Lock screen.jpg" altText="App lock screen security" />
+          <div className="animate-fade-up hero-visual" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img 
+              src="/Lock screen.jpg" 
+              alt="App lock screen security" 
+              loading="lazy"
+              style={{ 
+                width: '100%', 
+                maxWidth: '300px', 
+                height: 'auto', 
+                borderRadius: '24px', 
+                boxShadow: 'var(--shadow-lg)',
+                border: '1px solid var(--border)',
+                pointerEvents: 'none',
+                userSelect: 'none',
+                WebkitUserSelect: 'none',
+                WebkitTouchCallout: 'none'
+              }} 
+            />
+          </div>
         </div>
       </section>
 

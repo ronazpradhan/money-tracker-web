@@ -318,7 +318,11 @@ function App() {
               height: 'auto', 
               borderRadius: '24px', 
               boxShadow: 'var(--shadow-lg)',
-              border: '1px solid var(--border)'
+              border: '1px solid var(--border)',
+              pointerEvents: 'none',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none'
             }} 
           />
         </div>

@@ -202,10 +202,10 @@ function App() {
       {/* Hero Section */}
       <section className="landing-section landing-hero" id="hero">
         <div className="animate-fade-up">
-          <div className="hero-tagline">Offline Android Tracker</div>
-          <h1 className="hero-title">Track income and expenses without an account.</h1>
+          <div className="hero-tagline" style={{ backgroundColor: 'var(--accent-color)', color: 'white', display: 'inline-block', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>100% Free. No Subscriptions.</div>
+          <h1 className="hero-title">Track your money without an account.</h1>
           <p className="hero-desc">
-            Money Tracker is a simple offline Android app for logging income, expenses, monthly budgets, and backups. Your financial data stays on your device, and you can export backups whenever you need.
+            Money Tracker is a lightning-fast offline Android app. Zero cloud sync. Zero data collection. Your financial data never leaves your device.
           </p>
           <div className="hero-actions">
             <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
@@ -215,19 +215,22 @@ function App() {
               Explore Features &darr;
             </button>
           </div>
+          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '8px', textAlign: 'center', maxWidth: '360px' }}>
+            *might show a single ad only
+          </div>
           
-          <div className="hero-stats">
+          <div className="hero-stats" style={{ marginTop: '24px' }}>
             <div className="hero-stat-item">
-              <span className="hero-stat-val">Offline</span>
-              <span className="hero-stat-lbl">No account required</span>
+              <span className="hero-stat-val">100%</span>
+              <span className="hero-stat-lbl">Offline-First</span>
             </div>
             <div className="hero-stat-item">
-              <span className="hero-stat-val">Budgets</span>
-              <span className="hero-stat-lbl">Monthly limits</span>
+              <span className="hero-stat-val">Zero</span>
+              <span className="hero-stat-lbl">Servers</span>
             </div>
             <div className="hero-stat-item">
-              <span className="hero-stat-val">Backups</span>
-              <span className="hero-stat-lbl">Manual backups</span>
+              <span className="hero-stat-val">Local</span>
+              <span className="hero-stat-lbl">Backups</span>
             </div>
           </div>
         </div>
@@ -267,9 +270,9 @@ function App() {
         <div className="problem-solution-grid">
           <div className="prob-sol-card problem-card">
             <span className="card-pill">The Friction</span>
-            <h3 className="prob-sol-title">Standard Apps are Overwhelming</h3>
+            <h3 className="prob-sol-title">Most Finance Apps Are Bloated</h3>
             <p className="prob-sol-desc">
-              Most tools force you into high-friction flows that make tracking feel like a second job.
+              Other tools force you into high-friction flows that make tracking feel like a second job.
             </p>
             <ul className="prob-sol-list">
               <li className="prob-sol-item">
@@ -277,43 +280,43 @@ function App() {
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
-                <span><strong>Overly Complex:</strong> Too many buttons, menus, and configurations.</span>
+                <span><strong>Overly Complex:</strong> Cloud syncing delays, forced logins, and unnecessary social features.</span>
               </li>
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
-                <span><strong>Account Required:</strong> Demands login credentials just to track expenses.</span>
+                <span><strong>Hidden Costs:</strong> Locking basic charts and budgeting tools behind monthly subscriptions.</span>
               </li>
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
-                <span><strong>Cloud Sync Default:</strong> Uploads your personal data without offline alternatives.</span>
+                <span><strong>Data Harvesting:</strong> Uploading your intimate financial data to third-party servers.</span>
               </li>
             </ul>
           </div>
 
           <div className="prob-sol-card solution-card">
             <span className="card-pill">Our Answer</span>
-            <h3 className="prob-sol-title">Simplicity & Speed First</h3>
+            <h3 className="prob-sol-title">Speed. Privacy. Beauty.</h3>
             <p className="prob-sol-desc">
-              Money Tracker is built for rapid control and local storage.
+              Money Tracker is engineered to be the perfect offline utility.
             </p>
             <ul className="prob-sol-list">
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Quick logging:</strong> Enter amount, pick category, save.</span>
+                <span><strong>Instant Speed:</strong> 60fps animations and zero network loading screens. Enter a transaction in seconds.</span>
               </li>
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Income & Expenses:</strong> Track money coming in and going out with monthly budget limits.</span>
+                <span><strong>Absolute Privacy:</strong> Zero cloud servers. We literally can't see your data because it never leaves your phone.</span>
               </li>
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

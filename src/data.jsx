@@ -40,8 +40,8 @@ export const faqsList = [
 
 export const featuresList = [
   {
-    title: 'Income & Expense Tracking',
-    desc: 'Track both money coming in and money going out.',
+    title: 'Frictionless Logging',
+    desc: 'Designed to be the fastest way to log a transaction, period. No loading screens.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -49,8 +49,39 @@ export const featuresList = [
     )
   },
   {
+    title: 'Satisfying Haptic Numpad',
+    desc: 'Custom-built numpad with precise haptic feedback for a premium data-entry experience.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <line x1="9" y1="3" x2="9" y2="21"/>
+        <line x1="15" y1="3" x2="15" y2="21"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="3" y1="15" x2="21" y2="15"/>
+      </svg>
+    )
+  },
+  {
+    title: 'Fluid 60fps Animations',
+    desc: 'Powered by Reanimated 4, every interaction feels buttery smooth and responsive.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polygon points="5 3 19 12 5 21 5 3"/>
+      </svg>
+    )
+  },
+  {
+    title: 'Beautiful Interactive Charts',
+    desc: 'Visualize your spending patterns and category breakdowns with stunning graphs.',
+    icon: () => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M18 20V10M12 20V4M6 20v-6"/>
+      </svg>
+    )
+  },
+  {
     title: 'Monthly Budget Limit',
-    desc: 'Set a monthly spending limit and see how much remains.',
+    desc: 'Set a monthly spending limit and easily see how much remains at a glance.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
@@ -59,36 +90,18 @@ export const featuresList = [
     )
   },
   {
-    title: 'Transaction History',
-    desc: 'Search and filter your past records.',
+    title: 'Absolute Privacy',
+    desc: 'Zero server infrastructure. Your data never leaves your device. We couldn\'t see it even if we tried.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
       </svg>
     )
   },
   {
-    title: 'Analytics',
-    desc: 'View spending patterns and category breakdowns.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 20V10M12 20V4M6 20v-6"/>
-      </svg>
-    )
-  },
-  {
-    title: 'Manual Backups',
-    desc: 'Export and import CSV backup files manually.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" />
-      </svg>
-    )
-  },
-  {
-    title: 'CSV Export',
-    desc: 'Export transaction records for spreadsheets.',
+    title: 'Manual Backups (CSV)',
+    desc: 'Export and import your entire transaction history to spreadsheets whenever you want.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -100,27 +113,8 @@ export const featuresList = [
     )
   },
   {
-    title: 'Categories & Tags',
-    desc: 'Organize transactions with categories and notes/tags if supported.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01"/>
-      </svg>
-    )
-  },
-  {
-    title: 'App Lock',
-    desc: 'Protect the app using passcode or biometrics if enabled.',
-    icon: () => (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
-    )
-  },
-  {
-    title: 'Offline Use',
-    desc: 'Use the app without login or cloud sync.',
+    title: '100% Offline Architecture',
+    desc: 'Use the app instantly anywhere, without needing an internet connection or account.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.58 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>

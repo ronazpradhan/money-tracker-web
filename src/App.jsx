@@ -203,9 +203,9 @@ function App() {
       <section className="landing-section landing-hero" id="hero">
         <div className="animate-fade-up">
           <div className="hero-tagline" style={{ backgroundColor: 'var(--accent-color)', color: 'white', display: 'inline-block', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>100% Free. No Subscriptions.</div>
-          <h1 className="hero-title">Track your money without an account.</h1>
+          <h1 className="hero-title">Track your money safely.</h1>
           <p className="hero-desc">
-            Money Tracker is a lightning-fast offline Android app. Zero cloud sync. Zero data collection. Your financial data never leaves your device.
+            Money Tracker is a lightning-fast offline-first Android app. Zero cloud sync for your records. Privacy-focused with no financial data collection. Your financial data never leaves your device.
           </p>
           <div className="hero-actions">
             <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
@@ -316,7 +316,7 @@ function App() {
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span><strong>Absolute Privacy:</strong> Zero cloud servers. We literally can't see your data because it never leaves your phone.</span>
+                <span><strong>Privacy-Focused:</strong> Limited anonymous analytics. We don't upload your financial data because it never leaves your phone.</span>
               </li>
               <li className="prob-sol-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -621,10 +621,12 @@ function App() {
               <p>Your privacy is critically important to us. We have built Money Tracker from the ground up to respect your personal financial data.</p>
               
               <h4>1. Data Collection & Analytics</h4>
-              <p>We gather absolutely no personally identifiable information (PII). We do not track your behavior, log your sessions, or run third-party advertising services inside the app.</p>
+              <p>Money Tracker is offline-first. Financial records are stored locally on your device. The app does not upload income amounts, expense amounts, notes, balances, bank details, contacts, location, phone number, email, or personal financial records.</p>
+              <p>The app may collect limited anonymous usage analytics to improve the app. Anonymous analytics may include app opened, app version, settings viewed, language changed, Terms/Privacy acceptance, basic platform/device info, and crash/error information.</p>
+              <p>A random anonymous installation ID may be created to count active users without login. This ID is not linked to name, phone, email, or financial data. APK download button clicks on the website may be counted. Analytics are used only to improve Money Tracker.</p>
               
               <h4>2. Local Data Storage</h4>
-              <p>By default, Money Tracker operates entirely offline. All your transactions, budgets, categories, and settings are saved on your phone's internal storage using local SQLite storage. We do not have access to this data.</p>
+              <p>By default, Money Tracker operates offline for your financial data. All your transactions, budgets, categories, and settings are saved on your phone's internal storage using local SQLite storage. We do not have access to this data.</p>
               
               <h4>3. Biometric Authentication</h4>
               <p>Face Recognition and Fingerprint data are processed entirely by your device's native hardware. The app never sees or stores your biometric information.</p>

@@ -90,8 +90,8 @@ export const featuresList = [
     )
   },
   {
-    title: 'Absolute Privacy',
-    desc: 'Zero server infrastructure. Your data never leaves your device. We couldn\'t see it even if we tried.',
+    title: 'Privacy-Focused',
+    desc: 'Limited anonymous analytics. Your financial data is stored locally and never uploaded. We couldn\'t see it even if we tried.',
     icon: () => (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>

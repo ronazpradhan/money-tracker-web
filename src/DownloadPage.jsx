@@ -17,6 +17,26 @@ const LogoSVG = ({ size = 32 }) => (
 );
 
 export default function DownloadPage() {
+  const handleDownloadClick = () => {
+    try {
+      const payload = {
+        event: "apk_download_clicked",
+        app_version: "1.0.26",
+        build: 26,
+        source: "website",
+        timestamp: new Date().toISOString()
+      };
+      // Fire and forget, don't break download if it fails
+      fetch('https://money-tracker-android-web.vercel.app/api/analytics', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     document.title = "Money Tracker Android APK Download";
     let meta = document.querySelector('meta[name="description"]');
@@ -51,17 +71,28 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
             <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.25</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 25</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.26</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 26</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.25/MoneyTracker-v1.0.25.apk" className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
-              Download APK
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.26/MoneyTracker-v1.0.26.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+              Download APK v1.0.26
             </a>
           </div>
 
           <div style={{ borderTop: '1px solid var(--card-border)', paddingTop: '40px' }}>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.0.26</h3>
+            <ul style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
+              <li>Privacy-friendly anonymous analytics added.</li>
+              <li>Privacy Policy and Terms acceptance improved.</li>
+              <li>New full-screen What's New screen.</li>
+              <li>Theme reset bug fixed after app update.</li>
+              <li>New full-screen Edit Profile screen.</li>
+              <li>Mascot avatar selection added.</li>
+              <li>General polish and stability improvements.</li>
+            </ul>
+
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>Update Instructions</h3>
             <ol style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
               <li>Download the APK</li>

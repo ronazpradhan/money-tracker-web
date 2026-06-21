@@ -2,7 +2,11 @@
 
 **Money Tracker** is a simple offline-first Android app for tracking income, expenses, transaction history, and categories.
 
+**Important Note:** This repository is the public landing page and showcase website for Money Tracker. The main Android app source code is private while it is actively developed.
+
 The main idea behind this project is to make personal finance tracking fast, clean, and easy to use without making the app feel complicated or overloaded.
+
+Money Tracker is offline-first and privacy-focused. Limited anonymous analytics may be used to improve the app, but no financial transaction data is ever collected or uploaded.
 
 Live preview: https://money-tracker-android-web.vercel.app/
 

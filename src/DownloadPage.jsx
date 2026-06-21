@@ -17,7 +17,8 @@ const LogoSVG = ({ size = 32 }) => (
 );
 
 export default function DownloadPage() {
-  const handleDownloadClick = () => {
+  const handleDownloadClick = (e) => {
+    e.preventDefault(); // Prevent browser from navigating away
     try {
       if (window.posthog) {
         window.posthog.capture("apk_download_clicked", {
@@ -26,9 +27,22 @@ export default function DownloadPage() {
           source: "website"
         });
       }
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
     }
+
+    // Force download in the background so Android doesn't intercept github.com and open the GitHub App
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = "https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.26/MoneyTracker-v1.0.26.apk";
+    document.body.appendChild(iframe);
+
+    // Clean up
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 5000);
   };
 
   useEffect(() => {

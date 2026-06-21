@@ -621,9 +621,9 @@ function App() {
               <p>Your privacy is critically important to us. We have built Money Tracker from the ground up to respect your personal financial data.</p>
               
               <h4>1. Data Collection & Analytics</h4>
-              <p>Money Tracker is offline-first. Financial records are stored locally on your device. The app does not upload income amounts, expense amounts, notes, balances, bank details, contacts, location, phone number, email, or personal financial records.</p>
-              <p>The app may collect limited anonymous usage analytics to improve the app. Anonymous analytics may include app opened, app version, settings viewed, language changed, Terms/Privacy acceptance, basic platform/device info, and crash/error information.</p>
-              <p>A random anonymous installation ID may be created to count active users without login. This ID is not linked to name, phone, email, or financial data. APK download button clicks on the website may be counted. Analytics are used only to improve Money Tracker.</p>
+              <p>Money Tracker is offline-first. Financial records are stored locally on your device. The app does not upload income amounts, expense amounts, notes, balances, custom category names, bank details, contacts, location, phone number, email, or personal financial records.</p>
+              <p>Money Tracker uses PostHog for limited anonymous usage analytics to improve the app. Analytics may include app opens, app version, Terms/Privacy acceptance, settings viewed, language changed, currency changed, theme changed, and basic feature usage.</p>
+              <p>A random anonymous installation ID may be used to count active users without login. This ID is not linked to name, phone, email, or financial data. Users can disable anonymous analytics from Settings in the Android app. APK download counts on the website may come from GitHub Releases download statistics.</p>
               
               <h4>2. Local Data Storage</h4>
               <p>By default, Money Tracker operates offline for your financial data. All your transactions, budgets, categories, and settings are saved on your phone's internal storage using local SQLite storage. We do not have access to this data.</p>

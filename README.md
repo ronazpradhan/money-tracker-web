@@ -6,7 +6,7 @@
 
 The main idea behind this project is to make personal finance tracking fast, clean, and easy to use without making the app feel complicated or overloaded.
 
-Money Tracker is offline-first and privacy-focused. Limited anonymous analytics may be used to improve the app, but no financial transaction data is ever collected or uploaded.
+Money Tracker is offline-first and privacy-focused. Limited anonymous PostHog analytics may be used to improve the Android app. No financial transaction data is collected, and users can disable anonymous analytics in the app Settings.
 
 Live preview: https://money-tracker-android-web.vercel.app/
 

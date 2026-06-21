@@ -18,8 +18,17 @@ const LogoSVG = ({ size = 32 }) => (
 
 export default function DownloadPage() {
   const handleDownloadClick = () => {
-    // Only log locally, no custom database or backend analytics endpoints.
-    console.log("APK download clicked (v1.0.26)");
+    try {
+      if (window.posthog) {
+        window.posthog.capture("apk_download_clicked", {
+          app_version: "1.0.26",
+          build: 26,
+          source: "website"
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {

@@ -21,8 +21,8 @@ export default function DownloadPage() {
     try {
       if (window.posthog) {
         window.posthog.capture("apk_download_clicked", {
-          app_version: "1.0.26",
-          build: 26,
+          app_version: "1.0.27",
+          build: 27,
           source: "website"
         });
       }
@@ -65,25 +65,23 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
             <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.26</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 26</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.27</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 27</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.26/MoneyTracker-v1.0.26.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
-              Download APK v1.0.26
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.27/MoneyTracker-v1.0.27.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+              Download APK v1.0.27
             </a>
           </div>
 
           <div style={{ borderTop: '1px solid var(--card-border)', paddingTop: '40px' }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.0.26</h3>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.0.27</h3>
             <ul style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
-              <li>Privacy-friendly anonymous analytics added using PostHog.</li>
-              <li>Privacy Policy and Terms acceptance improved.</li>
-              <li>Full-screen What's New screen added.</li>
-              <li>Theme reset bug fixed after update.</li>
-              <li>Full-screen Edit Profile screen added.</li>
-              <li>Mascot avatar selection added.</li>
+              <li>Custom Categories - Create and manage your own income and expense categories.</li>
+              <li>Settings Search - Quickly find settings with the new search bar.</li>
+              <li>Improved Multi-line inputs - Text inputs now expand correctly like chat apps.</li>
+              <li>UI Alignment Fixes - Perfected icon alignments in the category manager.</li>
               <li>General polish and stability improvements.</li>
             </ul>
 

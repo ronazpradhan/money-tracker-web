@@ -21,8 +21,8 @@ export default function DownloadPage() {
     try {
       if (window.posthog) {
         window.posthog.capture("apk_download_clicked", {
-          app_version: "1.0.27",
-          build: 27,
+          app_version: "1.1.0",
+          build: 28,
           source: "website"
         });
       }
@@ -65,24 +65,25 @@ export default function DownloadPage() {
 
           <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
             <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.0.27</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 27</div>
+            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.1.0</div>
+            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 28</div>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.0.27/MoneyTracker-v1.0.27.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
-              Download APK v1.0.27
+            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.1.0/MoneyTracker-v1.1.0.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
+              Download APK v1.1.0
             </a>
           </div>
 
           <div style={{ borderTop: '1px solid var(--card-border)', paddingTop: '40px' }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.0.27</h3>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.1.0</h3>
             <ul style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
-              <li>Custom Categories - Create and manage your own income and expense categories.</li>
-              <li>Settings Search - Quickly find settings with the new search bar.</li>
-              <li>Improved Multi-line inputs - Text inputs now expand correctly like chat apps.</li>
-              <li>UI Alignment Fixes - Perfected icon alignments in the category manager.</li>
-              <li>General polish and stability improvements.</li>
+              <li>Meet Penny - A cute ginger cat mascot who guides you, cheers when you save and warns you near your budget.</li>
+              <li>Penny Theme - The light theme is now warm cream and orange, inspired by Penny.</li>
+              <li>Photo Proof - Attach photos of receipts, bills, invoices or warranty cards to any transaction.</li>
+              <li>New Trends Chart - Clear money in and out bars with tappable details in Analytics.</li>
+              <li>Smoother Editing - Calendar date picker, unsaved-changes warning, and income stays income when edited.</li>
+              <li>New app icon, clearer messages and general polish and stability improvements.</li>
             </ul>
 
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>Update Instructions</h3>

@@ -62,7 +62,7 @@ export default function DownloadPage() {
           <section className="dl__card dl__hero rise">
             <Penny pose="yay" size="lg" eager />
             <h1 className="h2">Get Money Tracker</h1>
-            <p className="lead">A simple offline-first Android app for tracking income, expenses, budgets and backups.</p>
+            <p className="lead">Free, offline money tracking for Android.</p>
 
             <div className="dl__version">
               <div className="dl__version-label">Current version</div>

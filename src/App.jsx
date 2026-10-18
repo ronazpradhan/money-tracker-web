@@ -30,11 +30,6 @@ const COMPARE = [
   { row: 'Price', us: 'Free', them: 'Often a subscription' },
 ];
 
-const STEPS = [
-  { n: '01', title: 'Download the APK', text: 'Tap the button on the download page. The file comes straight from our official GitHub release.' },
-  { n: '02', title: 'Allow the install', text: 'Open the file. If Android asks, allow installs from your browser for this one app.' },
-  { n: '03', title: 'Log your first entry', text: 'Open Money Tracker, tap +, type an amount. Penny takes it from there.' },
-];
 
 let hasIncrementedVisit = false;
 
@@ -151,8 +146,7 @@ function App() {
               <span className="display__soft">It never leaves your phone.</span>
             </h1>
             <p className="lead rise" style={{ '--d': '160ms' }}>
-              A free, offline Android app for income, expenses and budgets.
-              No sign-up, no cloud sync, no financial data collection.
+              Free, offline money tracking for Android.
             </p>
             <div className="cta-row rise" style={{ '--d': '240ms' }}>
               <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-lg">
@@ -161,9 +155,6 @@ function App() {
               </a>
               <a href="#privacy" onClick={goTo('privacy')} className="btn btn-secondary btn-lg">See how privacy works</a>
             </div>
-            <p className="meta rise" style={{ '--d': '300ms' }}>
-              Free <span aria-hidden="true">·</span> No account <span aria-hidden="true">·</span> Works offline
-            </p>
           </div>
 
           <div className="stage rise" style={{ '--d': '360ms' }}>
@@ -171,16 +162,15 @@ function App() {
             <Phone src="/homepage.jpg" alt="Money Tracker home screen with income, expenses and budget" className="phone--main" eager />
             <Phone src="/dark theme.jpg" alt="Money Tracker in the Dark Slate theme" className="phone--side phone--right" />
             <div className="stage__penny">
-              <p className="bubble">Hi, I'm Penny! I keep your budget on track.</p>
+              <p className="bubble">Hi, I'm Penny!</p>
               <Penny pose="hello" size="lg" eager />
             </div>
           </div>
 
           <ul className="checks wrap">
-            <li>No account needed</li>
-            <li>Stored on your device</li>
-            <li>Works without internet</li>
-            <li>CSV export anytime</li>
+            <li>No account</li>
+            <li>No cloud</li>
+            <li>Works offline</li>
           </ul>
         </section>
 
@@ -190,10 +180,7 @@ function App() {
             <div>
               <Eyebrow>Your month, at a glance</Eyebrow>
               <h2 className="h2">Know where every rupee went.</h2>
-              <p className="lead lead--left">
-                Every entry lands in a clean monthly statement. Income in green, spending in black,
-                and what is left of your budget right at the bottom.
-              </p>
+              <p className="lead lead--left">In, out, and what's left.</p>
             </div>
             <div className="statement-wrap">
               <Penny pose="cash" size="md" className="statement-penny" />
@@ -216,7 +203,6 @@ function App() {
                   <span className="statement__leader" />
                   <span>NPR 29,480</span>
                 </div>
-                <p className="statement__note">Every entry stays on this phone. Nothing is uploaded.</p>
               </div>
             </div>
           </div>
@@ -228,7 +214,6 @@ function App() {
             <div className="section-head">
               <Eyebrow>Features</Eyebrow>
               <h2 className="h2">Everything you need. Nothing you don't.</h2>
-              <p className="lead">Fast to log, easy to read, and yours to keep.</p>
             </div>
 
             <div className="bento">
@@ -244,7 +229,7 @@ function App() {
                   </div>
                 </div>
                 <h3 className="tile__title">Penny keeps you honest</h3>
-                <p className="tile__text">She cheers when you save and warns you when you get close to your budget. No nagging, just a nudge.</p>
+                <p className="tile__text">Cheers when you save. Warns before you overspend.</p>
               </article>
 
               <article className="tile">
@@ -255,7 +240,7 @@ function App() {
                   </div>
                 </div>
                 <h3 className="tile__title">Log it in seconds</h3>
-                <p className="tile__text">A custom numpad with haptic feedback. Open, type, done.</p>
+                <p className="tile__text">Open, type, done.</p>
               </article>
 
               <article className="tile">
@@ -265,7 +250,7 @@ function App() {
                   <div className="viz-budget__row viz-budget__row--soft"><span>NPR 3,100 spent</span><span>NPR 1,900 left</span></div>
                 </div>
                 <h3 className="tile__title">A budget you can see</h3>
-                <p className="tile__text">Set a monthly limit and always know how much is left.</p>
+                <p className="tile__text">Always know what's left.</p>
               </article>
 
               <article className="tile tile--wide">
@@ -277,8 +262,8 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <h3 className="tile__title">Charts that explain your month</h3>
-                <p className="tile__text">The new trends chart shows money in and out side by side. Tap any bar for the details.</p>
+                <h3 className="tile__title">Clear charts</h3>
+                <p className="tile__text">Money in vs. money out, at a glance.</p>
               </article>
 
               <article className="tile">
@@ -291,7 +276,7 @@ function App() {
                   </div>
                 </div>
                 <h3 className="tile__title">Photo proof</h3>
-                <p className="tile__text">Attach receipts, bills or warranty cards to any transaction.</p>
+                <p className="tile__text">Snap the receipt. Attach it.</p>
               </article>
 
               <article className="tile">
@@ -300,7 +285,7 @@ function App() {
                   <span className="viz-file__chip viz-file__chip--soft">Excel · Sheets</span>
                 </div>
                 <h3 className="tile__title">Your data, your file</h3>
-                <p className="tile__text">Export or import your full history as CSV whenever you like.</p>
+                <p className="tile__text">Export to CSV anytime.</p>
               </article>
 
               <article className="tile">
@@ -309,7 +294,7 @@ function App() {
                   <span className="viz-lock__label">Passcode or biometrics</span>
                 </div>
                 <h3 className="tile__title">Locked when you want it</h3>
-                <p className="tile__text">Add an optional app lock so nobody else can peek.</p>
+                <p className="tile__text">Passcode or fingerprint.</p>
               </article>
             </div>
           </div>
@@ -321,10 +306,7 @@ function App() {
             <div>
               <Eyebrow>Privacy</Eyebrow>
               <h2 className="h2">Your records stay with you.</h2>
-              <p className="lead lead--left">
-                Money Tracker keeps every transaction in local storage on your Android phone.
-                There is no account and no cloud copy, so there is nothing for us to see.
-              </p>
+              <p className="lead lead--left">Nothing to sign up for. Nothing for us to see.</p>
 
               <div className="compare" role="table" aria-label="Money Tracker compared with many finance apps">
                 <div className="compare__row compare__row--head" role="row">
@@ -341,10 +323,7 @@ function App() {
                 ))}
               </div>
 
-              <p className="fine">
-                The app uses limited anonymous usage analytics to improve features. It never includes amounts,
-                notes or balances, and you can turn it off in Settings.
-              </p>
+              <p className="fine">Anonymous usage stats only, never your money data. You can turn them off in Settings.</p>
             </div>
 
             <div className="media">
@@ -359,8 +338,7 @@ function App() {
           <div className="wrap">
             <div className="section-head">
               <Eyebrow>Themes</Eyebrow>
-              <h2 className="h2">Make it feel like yours.</h2>
-              <p className="lead">Switch themes anytime in Settings. Your data stays exactly where it is.</p>
+              <h2 className="h2">Make it yours.</h2>
             </div>
           </div>
           <div className="theme-rail">
@@ -373,28 +351,6 @@ function App() {
           </div>
         </section>
 
-        {/* ---------- Install ---------- */}
-        <section className="section section--line" id="install">
-          <div className="wrap">
-            <div className="section-head">
-              <Eyebrow>Install</Eyebrow>
-              <h2 className="h2">Three steps to your first entry.</h2>
-            </div>
-            <ol className="steps">
-              {STEPS.map((s) => (
-                <li className="step" key={s.n}>
-                  <span className="step__n">{s.n}</span>
-                  <h3 className="step__title">{s.title}</h3>
-                  <p className="step__text">{s.text}</p>
-                </li>
-              ))}
-            </ol>
-            <p className="fine fine--center">
-              Android may show a Play Protect warning because the app is not on Google Play yet.
-              Only install Money Tracker from this website.
-            </p>
-          </div>
-        </section>
 
         {/* ---------- FAQ ---------- */}
         <section className="section section--line" id="faq">
@@ -430,7 +386,6 @@ function App() {
             <div className="finale">
               <Penny pose="yay" size="xl" className="finale__penny" />
               <h2 className="h2 finale__title">Your money. Your phone.<br />Nobody else.</h2>
-              <p className="lead">Free, offline, and ready in under a minute.</p>
               <div className="cta-row">
                 <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-lg">Download for Android</a>
               </div>
@@ -444,7 +399,7 @@ function App() {
         <div className="wrap footer__grid">
           <div className="footer__brand">
             <Brand onClick={goTop} />
-            <p>A simple offline Android money tracker for income, expenses, budgets and manual backups.</p>
+            <p>Offline money tracking for Android.</p>
             <Penny pose="idle" size="sm" />
           </div>
           <div>

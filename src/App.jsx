@@ -1,643 +1,518 @@
-import React, { useState, useEffect } from 'react';
-import ThemeToggle from './components/ThemeToggle';
-import { themeScreenshots, faqsList, featuresList } from './data.jsx';
+import React, { useState, useEffect, useCallback } from 'react';
+import { faqsList } from './data.jsx';
+import { Brand, Penny, Phone, Eyebrow, DOWNLOAD_PAGE } from './components/ui.jsx';
 
-const LogoSVG = ({ size = 32 }) => (
-  <img 
-    src="/apple-touch-icon.png" 
-    alt="Money Tracker" 
-    style={{ 
-      width: size, 
-      height: size, 
-      display: 'block', 
-      flexShrink: 0, 
-      borderRadius: '6px',
-      objectFit: 'contain'
-    }} 
-  />
-);
+const NAV_LINKS = [
+  { id: 'features', label: 'Features' },
+  { id: 'privacy', label: 'Privacy' },
+  { id: 'themes', label: 'Themes' },
+  { id: 'faq', label: 'FAQ' },
+];
+
+const THEMES = [
+  { name: 'Dark Slate', file: '/dark theme.jpg', dot: '#1e293b' },
+  { name: 'Classic Light', file: '/Light theme.jpg', dot: '#e2e8f0' },
+  { name: 'Crimson', file: '/crimson web theme.jpg', dot: '#cd5d67' },
+  { name: 'Pink Ribbon', file: '/pink ribbon.jpg', dot: '#f472b6' },
+];
+
+const STATEMENT = [
+  { label: 'Salary', amount: '+NPR 31,000', income: true },
+  { label: 'Groceries', amount: '−NPR 1,250' },
+  { label: 'Coffee', amount: '−NPR 180' },
+  { label: 'Transport', amount: '−NPR 90' },
+];
+
+const COMPARE = [
+  { row: 'Account to start', us: 'None', them: 'Usually required' },
+  { row: 'Where your records live', us: 'On your phone', them: 'Their servers' },
+  { row: 'Works without internet', us: 'Always', them: 'Often not' },
+  { row: 'Price', us: 'Free', them: 'Often a subscription' },
+];
+
+const STEPS = [
+  { n: '01', title: 'Download the APK', text: 'Tap the button on the download page. The file comes straight from our official GitHub release.' },
+  { n: '02', title: 'Allow the install', text: 'Open the file. If Android asks, allow installs from your browser for this one app.' },
+  { n: '03', title: 'Log your first entry', text: 'Open Money Tracker, tap +, type an amount. Penny takes it from there.' },
+];
 
 let hasIncrementedVisit = false;
 
-function App() {
-  const [activeFaq, setActiveFaq] = useState(0);
-  const [currentTime, setCurrentTime] = useState('11:42 AM');
-  const [activeThemeIndex, setActiveThemeIndex] = useState(0);
-  const [showTerms, setShowTerms] = useState(false);
-  const [showPrivacy, setShowPrivacy] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isNepal, setIsNepal] = useState(() => {
-    try {
-      // Nepal Timezone offset is UTC+5:45, which JS returns as -345 minutes
-      return new Date().getTimezoneOffset() === -345;
-    } catch (e) {
-      return false;
-    }
-  });
-
-  // Sync virtual phone status clock
+function useVisitorCount() {
+  const [count, setCount] = useState(0);
   useEffect(() => {
-    if (showTerms || showPrivacy || isMobileMenuOpen) {
-      document.body.classList.add('modal-open');
-    } else {
-      document.body.classList.remove('modal-open');
-    }
-  }, [showTerms, showPrivacy, isMobileMenuOpen]);
-
-  const [visitorCount, setVisitorCount] = useState(0);
-
-  useEffect(() => {
-    if (!hasIncrementedVisit) {
-      hasIncrementedVisit = true;
-      fetch('https://hitscounter.dev/api/hit?output=json&url=https%3A%2F%2Fmoney-tracker-android-web.vercel.app%2F')
-        .then(res => res.json())
-        .then(data => {
-          if (data && typeof data.total_hits === 'number') {
-            setVisitorCount(data.total_hits);
-          }
-        })
-        .catch(err => console.error('Error fetching visitors:', err));
-    }
+    if (hasIncrementedVisit) return;
+    hasIncrementedVisit = true;
+    fetch('https://hitscounter.dev/api/hit?output=json&url=https%3A%2F%2Fmoney-tracker-android-web.vercel.app%2F')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && typeof data.total_hits === 'number') setCount(data.total_hits);
+      })
+      .catch((err) => console.error('Error fetching visitors:', err));
   }, []);
+  return count;
+}
 
-  // Save scroll position on scroll and beforeunload to survive refresh
+function Modal({ title, subtitle, onClose, children, footer }) {
   useEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-    const saveScroll = () => {
-      sessionStorage.setItem('mt_scroll_y', String(window.scrollY));
-    };
-    window.addEventListener('scroll', saveScroll, { passive: true });
-    window.addEventListener('beforeunload', saveScroll);
-    return () => {
-      window.removeEventListener('scroll', saveScroll);
-      window.removeEventListener('beforeunload', saveScroll);
-    };
-  }, []);
-
-  // Restore scroll position on page reload instantly using auto scrollBehavior bypass
-  useEffect(() => {
-    const savedScrollY = sessionStorage.getItem('mt_scroll_y');
-    if (savedScrollY) {
-      const scrollVal = parseInt(savedScrollY, 10);
-      const restoreScroll = () => {
-        const html = document.documentElement;
-        const prevStyle = html.style.scrollBehavior;
-        html.style.scrollBehavior = 'auto';
-        window.scrollTo(0, scrollVal);
-        html.style.scrollBehavior = prevStyle;
-      };
-
-      // Try restoring immediately when mounted
-      restoreScroll();
-
-      // Retry after small delays to handle React DOM paints and layout shifts
-      const t1 = setTimeout(restoreScroll, 50);
-      const t2 = setTimeout(restoreScroll, 120);
-      const t3 = setTimeout(restoreScroll, 300);
-
-      return () => {
-        clearTimeout(t1);
-        clearTimeout(t2);
-        clearTimeout(t3);
-      };
-    }
-  }, []);
-
-  // Sync virtual phone status clock
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-      let hrs = now.getHours();
-      const mins = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hrs >= 12 ? 'PM' : 'AM';
-      hrs = hrs % 12 || 12;
-      setCurrentTime(`${hrs}:${mins} ${ampm}`);
-    };
-    updateClock();
-    const interval = setInterval(updateClock, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const scrollToSection = (id) => (e) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 76;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   return (
-    <div className="landing-wrapper">
-      
-      {/* Sticky Glassmorphic Header */}
-      <header className="landing-header">
-        <a href="/" onClick={(e) => { scrollToTop(e); setIsMobileMenuOpen(false); }} className="brand-section">
-          <LogoSVG size={32} />
-          <span className="brand-name">Money Tracker</span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <nav className="landing-nav">
-          <button onClick={scrollToSection('security')} className="landing-nav-link">Security</button>
-          <button onClick={scrollToSection('features')} className="landing-nav-link">Features</button>
-          <button onClick={scrollToSection('faq')} className="landing-nav-link">FAQ</button>
-          <ThemeToggle />
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-            Download APK
-          </a>
-        </nav>
-
-        {/* Mobile Header Controls */}
-        <div className="mobile-header-controls">
-          <ThemeToggle />
-          <button 
-            type="button"
-            className={`hamburger-menu ${isMobileMenuOpen ? 'open' : ''}`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-          >
-            <span className="hamburger-bar" />
-            <span className="hamburger-bar" />
-            <span className="hamburger-bar" />
+    <div className="modal" onClick={onClose}>
+      <div className="modal__card" role="dialog" aria-modal="true" aria-label={title} onClick={(e) => e.stopPropagation()}>
+        <div className="modal__head">
+          <div>
+            <h3 className="modal__title">{title}</h3>
+            <span className="modal__sub">{subtitle}</span>
+          </div>
+          <button type="button" className="icon-btn" onClick={onClose} aria-label="Close">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
           </button>
+        </div>
+        <div className="modal__body">{children}</div>
+        <div className="modal__foot">{footer}</div>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [openFaq, setOpenFaq] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const visitorCount = useVisitorCount();
+
+  useEffect(() => {
+    document.body.classList.toggle('no-scroll', showTerms || showPrivacy || menuOpen);
+  }, [showTerms, showPrivacy, menuOpen]);
+
+  const goTo = useCallback((id) => (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - 88;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }, []);
+
+  const goTop = (e) => {
+    e.preventDefault();
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="site">
+
+      {/* ---------- Nav ---------- */}
+      <header className="nav">
+        <div className="nav__pill">
+          <Brand onClick={goTop} />
+          <nav className="nav__links" aria-label="Sections">
+            {NAV_LINKS.map((l) => (
+              <a key={l.id} href={`#${l.id}`} onClick={goTo(l.id)}>{l.label}</a>
+            ))}
+          </nav>
+          <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-sm nav__cta">Download APK</a>
+          <button
+            type="button"
+            className={`burger ${menuOpen ? 'is-open' : ''}`}
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+          >
+            <span /><span /><span />
+          </button>
+        </div>
+        <div className={`drawer ${menuOpen ? 'is-open' : ''}`}>
+          {NAV_LINKS.map((l) => (
+            <a key={l.id} href={`#${l.id}`} onClick={goTo(l.id)} className="drawer__link">{l.label}</a>
+          ))}
+          <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-block">Download APK</a>
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
-      <div className={`mobile-nav-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
-        <nav className="mobile-nav-links">
-          <button type="button" className="mobile-nav-link" onClick={(e) => { scrollToSection('security')(e); setIsMobileMenuOpen(false); }}>
-            Security
-          </button>
-          <button type="button" className="mobile-nav-link" onClick={(e) => { scrollToSection('features')(e); setIsMobileMenuOpen(false); }}>
-            Features
-          </button>
-          <button type="button" className="mobile-nav-link" onClick={(e) => { scrollToSection('faq')(e); setIsMobileMenuOpen(false); }}>
-            FAQ
-          </button>
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', marginTop: '12px', textDecoration: 'none', textAlign: 'center', display: 'block' }} onClick={() => setIsMobileMenuOpen(false)}>
-            Download APK
-          </a>
-        </nav>
-      </div>
+      <main>
+        {/* ---------- Hero ---------- */}
+        <section className="hero" id="top">
+          <div className="wrap hero__copy">
+            <span className="chip rise">
+              <Penny pose="hello" size="xs" eager />
+              Meet Penny, new in v1.1.0
+            </span>
+            <h1 className="display rise" style={{ '--d': '80ms' }}>
+              Track your money.<br />
+              <span className="display__soft">It never leaves your phone.</span>
+            </h1>
+            <p className="lead rise" style={{ '--d': '160ms' }}>
+              A free, offline Android app for income, expenses and budgets.
+              No sign-up, no cloud sync, no financial data collection.
+            </p>
+            <div className="cta-row rise" style={{ '--d': '240ms' }}>
+              <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-lg">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
+                Download for Android
+              </a>
+              <a href="#privacy" onClick={goTo('privacy')} className="btn btn-secondary btn-lg">See how privacy works</a>
+            </div>
+            <p className="meta rise" style={{ '--d': '300ms' }}>
+              Free <span aria-hidden="true">·</span> No account <span aria-hidden="true">·</span> Works offline
+            </p>
+          </div>
 
-      {/* Hero Section */}
-      <section className="landing-section landing-hero" id="hero">
-        <div className="animate-fade-up">
-          <div className="hero-tagline" style={{ backgroundColor: 'var(--accent-color)', color: 'white', display: 'inline-block', padding: '4px 12px', borderRadius: '12px', fontWeight: 'bold' }}>100% Free. No Subscriptions.</div>
-          <h1 className="hero-title">Track your money safely.</h1>
-          <p className="hero-desc">
-            Money Tracker is a lightning-fast offline-first Android app. Zero cloud sync for your records. Privacy-focused with no financial data collection. Your financial data never leaves your device.
-          </p>
-          <div className="hero-actions">
-            <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-              Download Android APK
-            </a>
-            <button onClick={scrollToSection('features')} className="btn btn-secondary">
-              Explore Features &darr;
-            </button>
-          </div>
-          <div style={{ fontSize: '11px', color: 'var(--text-secondary)', marginTop: '8px', textAlign: 'center', maxWidth: '360px' }}>
-            *might show a single ad only
-          </div>
-          
-          <div className="hero-stats" style={{ marginTop: '24px' }}>
-            <div className="hero-stat-item">
-              <span className="hero-stat-val">100%</span>
-              <span className="hero-stat-lbl">Offline-First</span>
-            </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-val">Zero</span>
-              <span className="hero-stat-lbl">Servers</span>
-            </div>
-            <div className="hero-stat-item">
-              <span className="hero-stat-val">Local</span>
-              <span className="hero-stat-lbl">Backups</span>
+          <div className="stage rise" style={{ '--d': '360ms' }}>
+            <Phone src="/Light theme.jpg" alt="Money Tracker in the Classic Light theme" className="phone--side phone--left" />
+            <Phone src="/homepage.jpg" alt="Money Tracker home screen with income, expenses and budget" className="phone--main" eager />
+            <Phone src="/dark theme.jpg" alt="Money Tracker in the Dark Slate theme" className="phone--side phone--right" />
+            <div className="stage__penny">
+              <p className="bubble">Hi, I'm Penny! I keep your budget on track.</p>
+              <Penny pose="hello" size="lg" eager />
             </div>
           </div>
-        </div>
 
-        <div className="animate-fade-up hero-visual" style={{ animationDelay: '0.2s', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img 
-            src="/homepage.jpg" 
-            alt="Money Tracker Dashboard" 
-            fetchPriority="high"
-            loading="eager"
-            style={{ 
-              width: '100%', 
-              maxWidth: '300px', 
-              height: 'auto', 
-              borderRadius: '24px', 
-              boxShadow: 'var(--shadow-lg)',
-              border: '1px solid var(--border)',
-              pointerEvents: 'none',
-              userSelect: 'none',
-              WebkitUserSelect: 'none',
-              WebkitTouchCallout: 'none'
-            }} 
-          />
-        </div>
-      </section>
+          <ul className="checks wrap">
+            <li>No account needed</li>
+            <li>Stored on your device</li>
+            <li>Works without internet</li>
+            <li>CSV export anytime</li>
+          </ul>
+        </section>
 
-      {/* Problem & Solution Section */}
-      <section className="landing-section animate-fade-up" id="problem-solution" style={{ borderTop: '1px solid var(--border)', paddingTop: '100px' }}>
-        <div className="landing-section-header">
-          <span className="landing-section-tag">The Challenge & The Answer</span>
-          <h2 className="landing-section-title">Cut through the financial noise</h2>
-          <p className="landing-section-desc">
-            Too many apps feel complicated, push account setup, or make basic tracking slower than it needs to be.
-          </p>
-        </div>
-
-        <div className="problem-solution-grid">
-          <div className="prob-sol-card problem-card">
-            <span className="card-pill">The Friction</span>
-            <h3 className="prob-sol-title">Most Finance Apps Are Bloated</h3>
-            <p className="prob-sol-desc">
-              Other tools force you into high-friction flows that make tracking feel like a second job.
-            </p>
-            <ul className="prob-sol-list">
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                <span><strong>Overly Complex:</strong> Cloud syncing delays, forced logins, and unnecessary social features.</span>
-              </li>
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                <span><strong>Hidden Costs:</strong> Locking basic charts and budgeting tools behind monthly subscriptions.</span>
-              </li>
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                <span><strong>Data Harvesting:</strong> Uploading your intimate financial data to third-party servers.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="prob-sol-card solution-card">
-            <span className="card-pill">Our Answer</span>
-            <h3 className="prob-sol-title">Speed. Privacy. Beauty.</h3>
-            <p className="prob-sol-desc">
-              Money Tracker is engineered to be the perfect offline utility.
-            </p>
-            <ul className="prob-sol-list">
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span><strong>Instant Speed:</strong> 60fps animations and zero network loading screens. Enter a transaction in seconds.</span>
-              </li>
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span><strong>Privacy-Focused:</strong> Limited anonymous analytics. We don't upload your financial data because it never leaves your phone.</span>
-              </li>
-              <li className="prob-sol-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12"></polyline>
-                </svg>
-                <span><strong>Offline local storage:</strong> Your data stays on your device. Backup/export manually.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Showcase 1: Security and SQLite */}
-      <section className="landing-section" id="security" style={{ borderTop: '1px solid var(--border)', paddingTop: '100px' }}>
-        <div className="feature-showcase-row">
-          <div className="feature-showcase-content animate-fade-up">
-            <span className="feature-showcase-tag">Security Guard</span>
-            <h2 className="feature-showcase-title">Local-first data control</h2>
-            <p className="feature-showcase-desc">
-              Money Tracker stores your transactions on your Android device using local SQLite storage. The app does not require an account or cloud sync for tracking. You can protect the app with passcode or biometric lock if enabled, and export backups from Settings.
-            </p>
-            <ul className="feature-showcase-list">
-              <li className="feature-showcase-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span><strong>No account required:</strong> Start tracking instantly without signing up.</span>
-              </li>
-              <li className="feature-showcase-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span><strong>Local SQLite storage:</strong> Data is kept on your device.</span>
-              </li>
-              <li className="feature-showcase-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span><strong>Optional app lock:</strong> Secure the app with passcode or biometrics if supported.</span>
-              </li>
-              <li className="feature-showcase-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                <span><strong>Manual backups:</strong> Export CSV files. Works entirely without internet.</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="animate-fade-up hero-visual" style={{ position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <img 
-              src="/Lock screen.jpg" 
-              alt="App lock screen security" 
-              loading="lazy"
-              style={{ 
-                width: '100%', 
-                maxWidth: '300px', 
-                height: 'auto', 
-                borderRadius: '24px', 
-                boxShadow: 'var(--shadow-lg)',
-                border: '1px solid var(--border)',
-                pointerEvents: 'none',
-                userSelect: 'none',
-                WebkitUserSelect: 'none',
-                WebkitTouchCallout: 'none'
-              }} 
-            />
-          </div>
-        </div>
-      </section>
-
-      
-
-      {/* Core Benefits Grid */}
-      <section className="landing-section" id="features" style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="landing-section-header">
-          <span className="landing-section-tag">Powerful Tools</span>
-          <h2 className="landing-section-title">All details. No distraction.</h2>
-          <p className="landing-section-desc">
-            Organize cash flow with simple, offline tools designed to handle daily tracking needs efficiently.
-          </p>
-        </div>
-
-        <div className="features-grid">
-          {featuresList.map((item, idx) => (
-            <div className="feature-card" key={idx}>
-              <div className="feature-icon-wrapper">
-                {item.icon()}
+        {/* ---------- Statement ---------- */}
+        <section className="section">
+          <div className="wrap split">
+            <div>
+              <Eyebrow>Your month, at a glance</Eyebrow>
+              <h2 className="h2">Know where every rupee went.</h2>
+              <p className="lead lead--left">
+                Every entry lands in a clean monthly statement. Income in green, spending in black,
+                and what is left of your budget right at the bottom.
+              </p>
+            </div>
+            <div className="statement-wrap">
+              <Penny pose="cash" size="md" className="statement-penny" />
+              <div className="statement" aria-label="Example monthly statement">
+                <div className="statement__head">
+                  <span>Monthly statement</span>
+                  <span>June 2026</span>
+                </div>
+                <ul className="statement__rows">
+                  {STATEMENT.map((r) => (
+                    <li key={r.label}>
+                      <span>{r.label}</span>
+                      <span className="statement__leader" />
+                      <span className={`statement__amt ${r.income ? 'is-income' : ''}`}>{r.amount}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="statement__total">
+                  <span>Budget left</span>
+                  <span className="statement__leader" />
+                  <span>NPR 29,480</span>
+                </div>
+                <p className="statement__note">Every entry stays on this phone. Nothing is uploaded.</p>
               </div>
-              <h3 className="feature-title">{item.title}</h3>
-              <p className="feature-desc">{item.desc}</p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="landing-section" id="pricing" style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="landing-section-header">
-          <span className="landing-section-tag">Availability</span>
-          <h2 className="landing-section-title">Free offline app</h2>
-          <p className="landing-section-desc">
-            Money Tracker currently works as a free offline Android app. There is no account, subscription, or cloud sync.
-          </p>
-        </div>
-
-        <div className="pricing-grid" style={{ gridTemplateColumns: '1fr', maxWidth: '600px', margin: '0 auto' }}>
-          <div className="pricing-card popular" style={{ borderColor: 'var(--success)', boxShadow: 'var(--shadow-md)' }}>
-            <h3 className="pricing-name">Offline Android App</h3>
-            <p className="pricing-desc">Everything you need to track your daily expenses without an account.</p>
-            <div className="pricing-price">
-              Free
-            </div>
-            <ul className="pricing-features">
-              <li className="pricing-feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '16px', height: '16px', color: 'var(--success)', flexShrink: 0 }}><polyline points="20 6 9 17 4 12"/></svg>
-                Local tracking
-              </li>
-              <li className="pricing-feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '16px', height: '16px', color: 'var(--success)', flexShrink: 0 }}><polyline points="20 6 9 17 4 12"/></svg>
-                Manual backups
-              </li>
-              <li className="pricing-feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '16px', height: '16px', color: 'var(--success)', flexShrink: 0 }}><polyline points="20 6 9 17 4 12"/></svg>
-                No account setup
-              </li>
-            </ul>
-            <a href="/money-tracker/download" className="btn btn-primary" style={{ width: '100%', textDecoration: 'none', display: 'block', textAlign: 'center' }}>Download APK</a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Accordions Section */}
-      <section className="landing-section" id="faq" style={{ borderTop: '1px solid var(--border)' }}>
-        <div className="landing-section-header">
-          <span className="landing-section-tag">FAQ</span>
-          <h2 className="landing-section-title">Commonly asked questions</h2>
-          <p className="landing-section-desc">
-            Find out how Money Tracker secures data and handles local/online records.
-          </p>
-        </div>
+        {/* ---------- Features (bento) ---------- */}
+        <section className="section section--line" id="features">
+          <div className="wrap">
+            <div className="section-head">
+              <Eyebrow>Features</Eyebrow>
+              <h2 className="h2">Everything you need. Nothing you don't.</h2>
+              <p className="lead">Fast to log, easy to read, and yours to keep.</p>
+            </div>
 
-        <div className="faq-list">
-          {faqsList.map((faq, idx) => {
-            const isOpen = activeFaq === idx;
-            return (
-              <div 
-                key={idx} 
-                className={`faq-card ${isOpen ? 'open' : ''}`} 
-                style={{ cursor: 'pointer' }}
-                onClick={() => setActiveFaq(isOpen ? -1 : idx)}
-              >
-                <button 
-                  type="button" 
-                  className="faq-question-btn"
-                >
-                  <span>{faq.q}</span>
-                  <span>{isOpen ? '−' : '+'}</span>
-                </button>
-                {isOpen && (
-                  <div className="faq-answer">
-                    {faq.a}
+            <div className="bento">
+              <article className="tile tile--wide tile--penny">
+                <div className="tile__viz viz-penny">
+                  <div className="viz-penny__item">
+                    <Penny pose="yay" size="md" />
+                    <span className="mini-bubble">Saved NPR 2,000!</span>
                   </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </section>
+                  <div className="viz-penny__item">
+                    <Penny pose="uhoh" size="md" />
+                    <span className="mini-bubble mini-bubble--warn">90% of budget used</span>
+                  </div>
+                </div>
+                <h3 className="tile__title">Penny keeps you honest</h3>
+                <p className="tile__text">She cheers when you save and warns you when you get close to your budget. No nagging, just a nudge.</p>
+              </article>
 
-      {/* Direct Download Section */}
-      <section id="download" className="landing-section" style={{ borderTop: '1px solid var(--border)', textAlign: 'center', padding: '120px 24px' }}>
-        <h2 className="landing-section-title" style={{ fontSize: '48px' }}>Start Tracking Your Budget</h2>
-        <p className="landing-section-desc" style={{ fontSize: '18px', marginTop: '16px' }}>
-          Download the latest version of the Money Tracker Android APK. Safe, offline, and fast.
-        </p>
-        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginTop: '40px', flexWrap: 'wrap' }}>
-          <a href="/money-tracker/download" className="btn btn-primary" style={{ textDecoration: 'none' }}>
-            Download APK
-          </a>
-        </div>
-      </section>
+              <article className="tile">
+                <div className="tile__viz viz-pad" aria-hidden="true">
+                  <div className="viz-pad__display">NPR 180</div>
+                  <div className="viz-pad__keys">
+                    {['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'].map((k) => <span key={k}>{k}</span>)}
+                  </div>
+                </div>
+                <h3 className="tile__title">Log it in seconds</h3>
+                <p className="tile__text">A custom numpad with haptic feedback. Open, type, done.</p>
+              </article>
 
-      {/* Landing Footer */}
-      <footer className="landing-footer">
-        <div className="footer-grid">
-          {/* Column 1: Brand details */}
-          <div className="footer-column">
-            <div className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <LogoSVG size={28} />
-              <span className="brand-name" style={{ fontSize: '16px' }}>Money Tracker</span>
+              <article className="tile">
+                <div className="tile__viz viz-budget" aria-hidden="true">
+                  <div className="viz-budget__row"><span>June budget</span><strong>62%</strong></div>
+                  <div className="viz-budget__bar"><span /></div>
+                  <div className="viz-budget__row viz-budget__row--soft"><span>NPR 3,100 spent</span><span>NPR 1,900 left</span></div>
+                </div>
+                <h3 className="tile__title">A budget you can see</h3>
+                <p className="tile__text">Set a monthly limit and always know how much is left.</p>
+              </article>
+
+              <article className="tile tile--wide">
+                <div className="tile__viz viz-chart" aria-hidden="true">
+                  {[[60, 30], [45, 50], [70, 35], [55, 40], [80, 45], [65, 25]].map(([inc, out], i) => (
+                    <div className="viz-chart__pair" key={i}>
+                      <span className="viz-chart__in" style={{ '--h': inc }} />
+                      <span className="viz-chart__out" style={{ '--h': out }} />
+                    </div>
+                  ))}
+                </div>
+                <h3 className="tile__title">Charts that explain your month</h3>
+                <p className="tile__text">The new trends chart shows money in and out side by side. Tap any bar for the details.</p>
+              </article>
+
+              <article className="tile">
+                <div className="tile__viz viz-receipt" aria-hidden="true">
+                  <div className="viz-receipt__paper">
+                    <span /><span /><span /><span className="short" />
+                  </div>
+                  <div className="viz-receipt__cam">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+                  </div>
+                </div>
+                <h3 className="tile__title">Photo proof</h3>
+                <p className="tile__text">Attach receipts, bills or warranty cards to any transaction.</p>
+              </article>
+
+              <article className="tile">
+                <div className="tile__viz viz-file" aria-hidden="true">
+                  <span className="viz-file__chip">transactions.csv</span>
+                  <span className="viz-file__chip viz-file__chip--soft">Excel · Sheets</span>
+                </div>
+                <h3 className="tile__title">Your data, your file</h3>
+                <p className="tile__text">Export or import your full history as CSV whenever you like.</p>
+              </article>
+
+              <article className="tile">
+                <div className="tile__viz viz-lock" aria-hidden="true">
+                  <div className="viz-lock__dots"><span className="on" /><span className="on" /><span className="on" /><span /></div>
+                  <span className="viz-lock__label">Passcode or biometrics</span>
+                </div>
+                <h3 className="tile__title">Locked when you want it</h3>
+                <p className="tile__text">Add an optional app lock so nobody else can peek.</p>
+              </article>
             </div>
-            <p className="footer-tagline">
-              A simple offline Android money tracker for income, expenses, budgets, and manual backups.
+          </div>
+        </section>
+
+        {/* ---------- Privacy ---------- */}
+        <section className="section section--line" id="privacy">
+          <div className="wrap split split--media">
+            <div>
+              <Eyebrow>Privacy</Eyebrow>
+              <h2 className="h2">Your records stay with you.</h2>
+              <p className="lead lead--left">
+                Money Tracker keeps every transaction in local storage on your Android phone.
+                There is no account and no cloud copy, so there is nothing for us to see.
+              </p>
+
+              <div className="compare" role="table" aria-label="Money Tracker compared with many finance apps">
+                <div className="compare__row compare__row--head" role="row">
+                  <span role="columnheader" />
+                  <span role="columnheader">Money Tracker</span>
+                  <span role="columnheader">Many finance apps</span>
+                </div>
+                {COMPARE.map((c) => (
+                  <div className="compare__row" role="row" key={c.row}>
+                    <span role="rowheader">{c.row}</span>
+                    <span role="cell" className="compare__us">{c.us}</span>
+                    <span role="cell">{c.them}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="fine">
+                The app uses limited anonymous usage analytics to improve features. It never includes amounts,
+                notes or balances, and you can turn it off in Settings.
+              </p>
+            </div>
+
+            <div className="media">
+              <Phone src="/Lock screen.jpg" alt="Money Tracker lock screen asking for a passcode" className="phone--tilt" />
+              <Penny pose="idle" size="lg" className="media__penny" />
+            </div>
+          </div>
+        </section>
+
+        {/* ---------- Themes ---------- */}
+        <section className="section section--line" id="themes">
+          <div className="wrap">
+            <div className="section-head">
+              <Eyebrow>Themes</Eyebrow>
+              <h2 className="h2">Make it feel like yours.</h2>
+              <p className="lead">Switch themes anytime in Settings. Your data stays exactly where it is.</p>
+            </div>
+          </div>
+          <div className="theme-rail">
+            {THEMES.map((t) => (
+              <figure className="theme" key={t.name}>
+                <Phone src={t.file} alt={`Money Tracker in the ${t.name} theme`} />
+                <figcaption><span className="theme__dot" style={{ background: t.dot }} />{t.name}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* ---------- Install ---------- */}
+        <section className="section section--line" id="install">
+          <div className="wrap">
+            <div className="section-head">
+              <Eyebrow>Install</Eyebrow>
+              <h2 className="h2">Three steps to your first entry.</h2>
+            </div>
+            <ol className="steps">
+              {STEPS.map((s) => (
+                <li className="step" key={s.n}>
+                  <span className="step__n">{s.n}</span>
+                  <h3 className="step__title">{s.title}</h3>
+                  <p className="step__text">{s.text}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="fine fine--center">
+              Android may show a Play Protect warning because the app is not on Google Play yet.
+              Only install Money Tracker from this website.
             </p>
           </div>
+        </section>
 
-          {/* Column 2: Navigation Links */}
-          <div className="footer-column">
-            <h4 className="footer-column-title">App Navigation</h4>
-            <ul className="footer-links-list">
-              <li><button onClick={scrollToSection('problem-solution')} className="footer-link-item-btn">The Challenge</button></li>
-              <li><button onClick={scrollToSection('security')} className="footer-link-item-btn">Security</button></li>
-              <li><button onClick={scrollToSection('features')} className="footer-link-item-btn">Features</button></li>
-              <li><a href="/money-tracker/download" className="footer-link-item-btn" style={{textDecoration: 'none'}}>Download APK</a></li>
-            </ul>
+        {/* ---------- FAQ ---------- */}
+        <section className="section section--line" id="faq">
+          <div className="wrap faq">
+            <div className="faq__intro">
+              <Eyebrow>FAQ</Eyebrow>
+              <h2 className="h2">Fair questions.</h2>
+              <Penny pose="thinking" size="lg" className="faq__penny" />
+              <p className="fine">
+                Still stuck? <a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support">Email support</a>
+              </p>
+            </div>
+            <div className="faq__list">
+              {faqsList.map((f, i) => {
+                const open = openFaq === i;
+                return (
+                  <div className={`qa ${open ? 'is-open' : ''}`} key={f.q}>
+                    <button type="button" className="qa__q" aria-expanded={open} onClick={() => setOpenFaq(open ? -1 : i)}>
+                      <span>{f.q}</span>
+                      <span className="qa__icon" aria-hidden="true" />
+                    </button>
+                    {open && <p className="qa__a">{f.a}</p>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
+        </section>
 
-          {/* Column 3: Legal & Support Links */}
-          <div className="footer-column">
-            <h4 className="footer-column-title">Legal & Support</h4>
-            <ul className="footer-links-list">
-              <li><button onClick={() => setShowPrivacy(true)} className="footer-link-item-btn">Privacy Policy</button></li>
-              <li><button onClick={() => setShowTerms(true)} className="footer-link-item-btn">Terms of Service</button></li>
-              <li><a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support" className="footer-link-item-btn" style={{ textDecoration: 'none' }}>Email Support</a></li>
-            </ul>
-          </div>
-
-          {/* Column 4: Stats Counters */}
-          <div className="footer-column">
-            <h4 className="footer-column-title">App Statistics</h4>
-            <div className="stats-minimal-container" style={{ marginTop: '12px' }}>
-              <div className="stat-minimal-item">
-                <span className="stat-minimal-label">
-                  <span className="live-dot" /> Total Visitors
-                </span>
-                <span className="stat-minimal-value">
-                  {visitorCount > 0 ? visitorCount.toLocaleString() : 'Loading...'}
-                </span>
+        {/* ---------- Final CTA ---------- */}
+        <section className="section">
+          <div className="wrap">
+            <div className="finale">
+              <Penny pose="yay" size="xl" className="finale__penny" />
+              <h2 className="h2 finale__title">Your money. Your phone.<br />Nobody else.</h2>
+              <p className="lead">Free, offline, and ready in under a minute.</p>
+              <div className="cta-row">
+                <a href={DOWNLOAD_PAGE} className="btn btn-primary btn-lg">Download for Android</a>
               </div>
             </div>
           </div>
+        </section>
+      </main>
+
+      {/* ---------- Footer ---------- */}
+      <footer className="footer">
+        <div className="wrap footer__grid">
+          <div className="footer__brand">
+            <Brand onClick={goTop} />
+            <p>A simple offline Android money tracker for income, expenses, budgets and manual backups.</p>
+            <Penny pose="idle" size="sm" />
+          </div>
+          <div>
+            <h4 className="footer__title">Explore</h4>
+            <ul className="footer__links">
+              {NAV_LINKS.map((l) => (
+                <li key={l.id}><a href={`#${l.id}`} onClick={goTo(l.id)}>{l.label}</a></li>
+              ))}
+              <li><a href={DOWNLOAD_PAGE}>Download APK</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="footer__title">Legal & support</h4>
+            <ul className="footer__links">
+              <li><button type="button" onClick={() => setShowPrivacy(true)}>Privacy Policy</button></li>
+              <li><button type="button" onClick={() => setShowTerms(true)}>Terms of Service</button></li>
+              <li><a href="mailto:hi.ronajpradhan@gmail.com?subject=Money%20Tracker%20Support">Email support</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="footer__title">Visitors</h4>
+            <p className="footer__stat">
+              <span className="live-dot" />
+              {visitorCount > 0 ? visitorCount.toLocaleString() : 'Loading...'}
+            </p>
+          </div>
         </div>
-
-        <div className="footer-divider" />
-
-        <div className="footer-bottom">
-          <div className="footer-copyright">
-            <span>&copy; {new Date().getFullYear()} Money Tracker. All rights reserved.</span>
-            <span className="footer-made-by"> Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer" className="footer-author-link">Ronaj Pradhan</a>.</span>
-          </div>
-          <div style={{ color: 'var(--text-secondary)', fontSize: '13px' }}>
-            Offline Android App
-          </div>
+        <div className="wrap footer__bottom">
+          <span>&copy; {new Date().getFullYear()} Money Tracker. All rights reserved.</span>
+          <span>Made by <a href="https://pradhanronaj.com.np/" target="_blank" rel="noopener noreferrer">Ronaj Pradhan</a></span>
         </div>
       </footer>
 
-      {/* Terms of Service Modal */}
+      {/* ---------- Modals ---------- */}
       {showTerms && (
-        <div className="modal-overlay" onClick={() => setShowTerms(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <div className="modal-header-info">
-                <h3 className="modal-title">Terms of Service</h3>
-                <span className="modal-subtitle">Last Updated: June 2026</span>
-              </div>
-              <button className="modal-close-x" onClick={() => setShowTerms(false)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-            <div className="modal-body">
-              <p>Welcome to Money Tracker. By using our application, you agree to these Terms of Service.</p>
-              
-              <h4>1. Usage Limits</h4>
-              <p>Money Tracker provides an offline experience with local storage. No accounts or subscriptions are required.</p>
-              
-              <h4>2. Disclaimers</h4>
-              <p>The application is provided "as is", without warranty of any kind. Money Tracker is not a financial institution, and the data provided in the app is for personal tracking purposes only. We do not provide financial advice.</p>
-              
-              <h4>3. Limitation of Liability</h4>
-              <p>In no event shall Money Tracker or its developers be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, or other intangible losses, resulting from your use of the app.</p>
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-primary" onClick={() => setShowTerms(false)}>
-                I Accept these Terms
-              </button>
-            </div>
-          </div>
-        </div>
+        <Modal
+          title="Terms of Service"
+          subtitle="Last Updated: June 2026"
+          onClose={() => setShowTerms(false)}
+          footer={<button type="button" className="btn btn-primary" onClick={() => setShowTerms(false)}>I Accept these Terms</button>}
+        >
+          <p>Welcome to Money Tracker. By using our application, you agree to these Terms of Service.</p>
+          <h4>1. Usage Limits</h4>
+          <p>Money Tracker provides an offline experience with local storage. No accounts or subscriptions are required.</p>
+          <h4>2. Disclaimers</h4>
+          <p>The application is provided "as is", without warranty of any kind. Money Tracker is not a financial institution, and the data provided in the app is for personal tracking purposes only. We do not provide financial advice.</p>
+          <h4>3. Limitation of Liability</h4>
+          <p>In no event shall Money Tracker or its developers be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, or other intangible losses, resulting from your use of the app.</p>
+        </Modal>
       )}
 
-      {/* Privacy Policy Modal */}
       {showPrivacy && (
-        <div className="modal-overlay" onClick={() => setShowPrivacy(false)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <div className="modal-header-info">
-                <h3 className="modal-title">Privacy Policy</h3>
-                <span className="modal-subtitle">Last Updated: June 2026</span>
-              </div>
-              <button className="modal-close-x" onClick={() => setShowPrivacy(false)}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-            <div className="modal-body">
-              <p>Your privacy is critically important to us. We have built Money Tracker from the ground up to respect your personal financial data.</p>
-              
-              <h4>1. Data Collection & Analytics</h4>
-              <p>Money Tracker is offline-first. Financial records are stored locally on your device. The app does not upload income amounts, expense amounts, notes, balances, custom category names, bank details, contacts, location, phone number, email, or personal financial records.</p>
-              <p>Money Tracker uses PostHog for limited anonymous usage analytics to improve the app. Analytics may include app opens, app version, Terms/Privacy acceptance, settings viewed, language changed, currency changed, theme changed, and basic feature usage.</p>
-              <p>A random anonymous installation ID may be used to count active users without login. This ID is not linked to name, phone, email, or financial data. Users can disable anonymous analytics from Settings in the Android app. APK download counts on the website may come from GitHub Releases download statistics.</p>
-              
-              <h4>2. Local Data Storage</h4>
-              <p>By default, Money Tracker operates offline for your financial data. All your transactions, budgets, categories, and settings are saved on your phone's internal storage using local SQLite storage. We do not have access to this data.</p>
-              
-              <h4>3. Biometric Authentication</h4>
-              <p>Face Recognition and Fingerprint data are processed entirely by your device's native hardware. The app never sees or stores your biometric information.</p>
-            </div>
-            <div className="modal-footer">
-              <button className="btn btn-secondary" onClick={() => setShowPrivacy(false)}>
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
+        <Modal
+          title="Privacy Policy"
+          subtitle="Last Updated: June 2026"
+          onClose={() => setShowPrivacy(false)}
+          footer={<button type="button" className="btn btn-secondary" onClick={() => setShowPrivacy(false)}>Close</button>}
+        >
+          <p>Your privacy is critically important to us. We have built Money Tracker from the ground up to respect your personal financial data.</p>
+          <h4>1. Data Collection & Analytics</h4>
+          <p>Money Tracker is offline-first. Financial records are stored locally on your device. The app does not upload income amounts, expense amounts, notes, balances, custom category names, bank details, contacts, location, phone number, email, or personal financial records.</p>
+          <p>Money Tracker uses PostHog for limited anonymous usage analytics to improve the app. Analytics may include app opens, app version, Terms/Privacy acceptance, settings viewed, language changed, currency changed, theme changed, and basic feature usage.</p>
+          <p>A random anonymous installation ID may be used to count active users without login. This ID is not linked to name, phone, email, or financial data. Users can disable anonymous analytics from Settings in the Android app. APK download counts on the website may come from GitHub Releases download statistics.</p>
+          <h4>2. Local Data Storage</h4>
+          <p>By default, Money Tracker operates offline for your financial data. All your transactions, budgets, categories, and settings are saved on your phone's internal storage using local SQLite storage. We do not have access to this data.</p>
+          <h4>3. Biometric Authentication</h4>
+          <p>Face Recognition and Fingerprint data are processed entirely by your device's native hardware. The app never sees or stores your biometric information.</p>
+        </Modal>
       )}
     </div>
   );

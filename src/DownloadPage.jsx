@@ -1,29 +1,35 @@
 import React, { useEffect } from 'react';
-import ThemeToggle from './components/ThemeToggle';
+import { Brand, Penny, Eyebrow } from './components/ui.jsx';
 
-const LogoSVG = ({ size = 32 }) => (
-  <img
-    src="/apple-touch-icon.png"
-    alt="Money Tracker"
-    style={{
-      width: size,
-      height: size,
-      display: 'block',
-      flexShrink: 0,
-      borderRadius: '6px',
-      objectFit: 'contain'
-    }}
-  />
-);
+const VERSION = '1.1.0';
+const BUILD = 28;
+const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.1.0/MoneyTracker-v1.1.0.apk';
+
+const WHATS_NEW = [
+  ['Meet Penny', 'A cute ginger cat mascot who guides you, cheers when you save and warns you near your budget.'],
+  ['Penny Theme', 'The light theme is now warm cream and orange, inspired by Penny.'],
+  ['Photo Proof', 'Attach photos of receipts, bills, invoices or warranty cards to any transaction.'],
+  ['New Trends Chart', 'Clear money in and out bars with tappable details in Analytics.'],
+  ['Smoother Editing', 'Calendar date picker, unsaved-changes warning, and income stays income when edited.'],
+  ['Polish', 'New app icon, clearer messages and general stability improvements.'],
+];
+
+const STEPS = [
+  'Download the APK',
+  'Open the downloaded file',
+  'Allow install from this source if Android asks',
+  'Install the update',
+  'Your local app data should stay safe, but export a backup before updating',
+];
 
 export default function DownloadPage() {
   const handleDownloadClick = () => {
     try {
       if (window.posthog) {
-        window.posthog.capture("apk_download_clicked", {
-          app_version: "1.1.0",
-          build: 28,
-          source: "website"
+        window.posthog.capture('apk_download_clicked', {
+          app_version: VERSION,
+          build: BUILD,
+          source: 'website',
         });
       }
     } catch (e) {
@@ -32,98 +38,73 @@ export default function DownloadPage() {
   };
 
   useEffect(() => {
-    document.title = "Money Tracker Android APK Download";
+    document.title = 'Money Tracker Android APK Download';
     let meta = document.querySelector('meta[name="description"]');
     if (!meta) {
       meta = document.createElement('meta');
-      meta.name = "description";
+      meta.name = 'description';
       document.head.appendChild(meta);
     }
-    meta.content = "Download the latest APK update for Money Tracker.";
+    meta.content = 'Download the latest APK update for Money Tracker.';
   }, []);
 
   return (
-    <div className="landing-wrapper">
-      <header className="landing-header" style={{ justifyContent: 'center' }}>
-        <a href="/" className="brand-section">
-          <LogoSVG size={32} />
-          <span className="brand-name">Money Tracker</span>
-        </a>
-        <ThemeToggle />
+    <div className="site">
+      <header className="nav">
+        <div className="nav__pill dl-nav">
+          <Brand />
+          <a href="/" className="back-link">&larr; Back to home</a>
+        </div>
       </header>
 
-      <section className="landing-section" style={{ paddingTop: '140px', paddingBottom: '60px', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div className="animate-fade-up" style={{ maxWidth: '600px', width: '100%', backgroundColor: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: '20px', padding: '32px 24px', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.02)' }}>
+      <main className="dl">
+        <div className="wrap dl__grid">
+          <section className="dl__card dl__hero rise">
+            <Penny pose="yay" size="lg" eager />
+            <h1 className="h2">Get Money Tracker</h1>
+            <p className="lead">A simple offline-first Android app for tracking income, expenses, budgets and backups.</p>
 
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: '36px' }}>
-            <LogoSVG size={88} />
-            <h1 className="landing-section-title" style={{ fontSize: '36px', marginTop: '24px', marginBottom: '12px' }}>Money Tracker</h1>
-            <p className="landing-section-desc" style={{ fontSize: '16px', maxWidth: '420px', lineHeight: '1.6' }}>
-              A simple offline-first Android app for tracking income, expenses, budgets, and backups.
-            </p>
-          </div>
+            <div className="dl__version">
+              <div className="dl__version-label">Current version</div>
+              <div className="dl__version-num">v{VERSION}</div>
+              <div className="dl__version-build">Build {BUILD}</div>
+            </div>
 
-          <div style={{ backgroundColor: 'var(--surface-2)', borderRadius: '16px', padding: '24px', marginBottom: '36px', textAlign: 'center', border: '1px solid var(--border-strong)' }}>
-            <div style={{ fontSize: '13px', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '6px' }}>Current Version</div>
-            <div style={{ fontSize: '28px', fontFamily: 'var(--font-display)', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '4px' }}>Version 1.1.0</div>
-            <div style={{ fontSize: '15px', color: 'var(--text-secondary)' }}>Build 28</div>
-          </div>
-
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <a href="https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.1.0/MoneyTracker-v1.1.0.apk" onClick={handleDownloadClick} className="btn btn-primary" style={{ width: '100%', display: 'block', textAlign: 'center', textDecoration: 'none' }}>
-              Download APK v1.1.0
+            <a href={APK_URL} onClick={handleDownloadClick} className="btn btn-primary btn-lg btn-block">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>
+              Download APK v{VERSION}
             </a>
-          </div>
+          </section>
 
-          <div style={{ borderTop: '1px solid var(--card-border)', paddingTop: '40px' }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>What's New in v1.1.0</h3>
-            <ul style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
-              <li>Meet Penny - A cute ginger cat mascot who guides you, cheers when you save and warns you near your budget.</li>
-              <li>Penny Theme - The light theme is now warm cream and orange, inspired by Penny.</li>
-              <li>Photo Proof - Attach photos of receipts, bills, invoices or warranty cards to any transaction.</li>
-              <li>New Trends Chart - Clear money in and out bars with tappable details in Analytics.</li>
-              <li>Smoother Editing - Calendar date picker, unsaved-changes warning, and income stays income when edited.</li>
-              <li>New app icon, clearer messages and general polish and stability improvements.</li>
+          <section className="dl__card rise" style={{ '--d': '120ms' }}>
+            <Eyebrow>Release notes</Eyebrow>
+            <h2 className="dl__h3">What's new in v{VERSION}</h2>
+            <ul className="dl__list dl__list--new">
+              {WHATS_NEW.map(([title, text]) => (
+                <li key={title}><span><strong>{title}.</strong> {text}</span></li>
+              ))}
             </ul>
 
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: '700', marginBottom: '20px', color: 'var(--text-primary)' }}>Update Instructions</h3>
-            <ol style={{ paddingLeft: '24px', color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px' }}>
-              <li>Download the APK</li>
-              <li>Open the downloaded file</li>
-              <li>Allow install from this source if Android asks</li>
-              <li>Install the update</li>
-              <li>Your local app data should stay safe, but export a backup before updating</li>
+            <h2 className="dl__h3">How to update</h2>
+            <ol className="dl__list dl__list--steps">
+              {STEPS.map((s) => <li key={s}><span>{s}</span></li>)}
             </ol>
 
-            <div style={{ backgroundColor: 'var(--surface-2)', borderLeft: '4px solid var(--danger)', padding: '20px', borderRadius: '4px 12px 12px 4px', marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}>
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                  <line x1="12" y1="9" x2="12" y2="13" />
-                  <line x1="12" y1="17" x2="12.01" y2="17" />
-                </svg>
-                <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: '14px', lineHeight: '1.6' }}>
-                  <strong>Before updating, we recommend exporting a backup from Settings inside the app.</strong> Money Tracker stores data locally on your device.
-                </p>
-              </div>
+            <div className="note note--warn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01" />
+              </svg>
+              <p><strong>Before updating, export a backup from Settings inside the app.</strong> Money Tracker stores data locally on your device.</p>
             </div>
-
-            <div style={{ backgroundColor: 'var(--surface-2)', borderLeft: '4px solid var(--yellow)', padding: '20px', borderRadius: '4px 12px 12px 4px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" strokeWidth="2.5" style={{ flexShrink: 0, marginTop: '2px' }}>
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="8" x2="12" y2="12" />
-                  <line x1="12" y1="16" x2="12.01" y2="16" />
-                </svg>
-                <p style={{ margin: 0, color: 'var(--text-primary)', fontSize: '14px', lineHeight: '1.6' }}>
-                  Android may show a <strong>Play Protect</strong> warning because this APK is distributed directly from our website and is not yet listed on Google Play. Only install Money Tracker from this official download page.
-                </p>
-              </div>
+            <div className="note note--info">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" />
+              </svg>
+              <p>Android may show a <strong>Play Protect</strong> warning because this APK is distributed directly from our website and is not yet listed on Google Play. Only install Money Tracker from this official download page.</p>
             </div>
-          </div>
-
+          </section>
         </div>
-      </section>
+      </main>
     </div>
   );
 }

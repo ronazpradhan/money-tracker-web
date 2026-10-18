@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Brand, Penny, Eyebrow } from './components/ui.jsx';
 
-const VERSION = '1.3.0';
-const BUILD = 30;
-const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.3.0/MoneyTracker-v1.3.0.apk';
+const VERSION = '1.3.1';
+const BUILD = 31;
+const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.3.1/MoneyTracker-v1.3.1.apk';
 
 const WHATS_NEW = [
-  ['Categories Without the Popup', 'Pick a category right inside the card, with your recent ones first.'],
-  ['Swipe to Switch', 'On Add, swipe left or right to flip between expense and income.'],
+  ['Smoother Amount Entry', 'Typing is steady, numbers always fit on screen, and amounts go up to 9,999,999.'],
+  ['Haptics Switch', 'Turn vibrations off any time in Profile > Preferences.'],
+  ['Fits Every Phone', "One clean text size that follows your phone's font setting, and layouts that fit small screens."],
+  ['Categories Without the Popup', 'Pick a category right inside the card, and swipe to switch expense and income.'],
   ['Edit Anything', 'Change the amount, type, who you paid, date, note or photos from History.'],
-  ['Your Own Categories', 'Make one in a few taps with a name, colour and icon. Rename any time.'],
   ['Easier App Lock', 'Set a code, enter it again, answer one question. Done.'],
-  ['Fresh Look', 'New icons, a calmer Home, a new budget screen and a tab bar that matches your theme.'],
 ];
 
 const STEPS = [

@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Brand, Penny, Eyebrow } from './components/ui.jsx';
 
-const VERSION = '1.2.0';
-const BUILD = 29;
-const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.2.0/MoneyTracker-v1.2.0.apk';
+const VERSION = '1.3.0';
+const BUILD = 30;
+const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.3.0/MoneyTracker-v1.3.0.apk';
 
 const WHATS_NEW = [
-  ['Liquid Glass Design', 'A fresh frosted-glass look with a floating tab bar you can tap or slide across.'],
-  ['Spending at a Glance', "Home leads with this month's spending, a budget ring and quick actions."],
-  ['Who You Paid', "Add who you paid or who paid you. It's shown in history and searchable."],
-  ['Undo Instead of Pop-ups', 'Tap Undo within 5 seconds to bring back anything you delete.'],
-  ['Cleaner Add Screen', 'A big amount, one tidy details card and extras under More options.'],
-  ['Avatars and Polish', "Animated animal avatars, Penny's loading animation and the Manrope typeface."],
+  ['Categories Without the Popup', 'Pick a category right inside the card, with your recent ones first.'],
+  ['Swipe to Switch', 'On Add, swipe left or right to flip between expense and income.'],
+  ['Edit Anything', 'Change the amount, type, who you paid, date, note or photos from History.'],
+  ['Your Own Categories', 'Make one in a few taps with a name, colour and icon. Rename any time.'],
+  ['Easier App Lock', 'Set a code, enter it again, answer one question. Done.'],
+  ['Fresh Look', 'New icons, a calmer Home, a new budget screen and a tab bar that matches your theme.'],
 ];
 
 const STEPS = [

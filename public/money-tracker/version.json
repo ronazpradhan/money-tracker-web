@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.2.0",
-  "latestBuild": 29,
+  "latestVersion": "1.3.0",
+  "latestBuild": 30,
   "minimumBuild": 18,
   "title": "New update available",
-  "message": "Money Tracker v1.2.0 is here! A fresh liquid glass design, see who you paid, undo deletes and a cleaner add screen.",
-  "apkUrl": "https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.2.0/MoneyTracker-v1.2.0.apk",
+  "message": "Money Tracker v1.3.0 is here! Categories without the popup, swipe to switch, easier editing and a simpler app lock.",
+  "apkUrl": "https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.3.0/MoneyTracker-v1.3.0.apk",
   "forceUpdate": false
 }

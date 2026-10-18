@@ -139,7 +139,7 @@ function App() {
           <div className="wrap hero__copy">
             <span className="chip rise">
               <Penny pose="hello" size="xs" eager />
-              New in v1.2.0: liquid glass design
+              New in v1.3.0: fewer taps, simpler app lock
             </span>
             <h1 className="display rise" style={{ '--d': '80ms' }}>
               Track your money.<br />

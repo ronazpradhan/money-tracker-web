@@ -4,7 +4,7 @@ export const DOWNLOAD_PAGE = '/money-tracker/download';
 
 export const Logo = ({ size = 32 }) => (
   <img
-    src="/money-tracker-logo.png"
+    src="/money-tracker-icon.svg"
     alt=""
     width={size}
     height={size}

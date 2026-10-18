@@ -1,9 +1,9 @@
 {
-  "latestVersion": "1.1.0",
-  "latestBuild": 28,
+  "latestVersion": "1.2.0",
+  "latestBuild": 29,
   "minimumBuild": 18,
   "title": "New update available",
-  "message": "Money Tracker v1.1.0 is here! Meet Penny, the new Penny theme, photo proof for receipts and a new trends chart.",
-  "apkUrl": "https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.1.0/MoneyTracker-v1.1.0.apk",
+  "message": "Money Tracker v1.2.0 is here! A fresh liquid glass design, see who you paid, undo deletes and a cleaner add screen.",
+  "apkUrl": "https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.2.0/MoneyTracker-v1.2.0.apk",
   "forceUpdate": false
 }

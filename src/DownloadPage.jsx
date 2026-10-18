@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Brand, Penny, Eyebrow } from './components/ui.jsx';
 
-const VERSION = '1.1.0';
-const BUILD = 28;
-const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.1.0/MoneyTracker-v1.1.0.apk';
+const VERSION = '1.2.0';
+const BUILD = 29;
+const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.2.0/MoneyTracker-v1.2.0.apk';
 
 const WHATS_NEW = [
-  ['Meet Penny', 'A cute ginger cat mascot who guides you, cheers when you save and warns you near your budget.'],
-  ['Penny Theme', 'The light theme is now warm cream and orange, inspired by Penny.'],
-  ['Photo Proof', 'Attach photos of receipts, bills, invoices or warranty cards to any transaction.'],
-  ['New Trends Chart', 'Clear money in and out bars with tappable details in Analytics.'],
-  ['Smoother Editing', 'Calendar date picker, unsaved-changes warning, and income stays income when edited.'],
-  ['Polish', 'New app icon, clearer messages and general stability improvements.'],
+  ['Liquid Glass Design', 'A fresh frosted-glass look with a floating tab bar you can tap or slide across.'],
+  ['Spending at a Glance', "Home leads with this month's spending, a budget ring and quick actions."],
+  ['Who You Paid', "Add who you paid or who paid you. It's shown in history and searchable."],
+  ['Undo Instead of Pop-ups', 'Tap Undo within 5 seconds to bring back anything you delete.'],
+  ['Cleaner Add Screen', 'A big amount, one tidy details card and extras under More options.'],
+  ['Avatars and Polish', "Animated animal avatars, Penny's loading animation and the Manrope typeface."],
 ];
 
 const STEPS = [

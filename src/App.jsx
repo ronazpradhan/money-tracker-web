@@ -139,7 +139,7 @@ function App() {
           <div className="wrap hero__copy">
             <span className="chip rise">
               <Penny pose="hello" size="xs" eager />
-              New in v1.3.1: smoother amounts, fits every phone
+              New in v1.4.0: backup to Google Drive
             </span>
             <h1 className="display rise" style={{ '--d': '80ms' }}>
               Track your money.<br />

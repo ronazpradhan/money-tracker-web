@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Brand, Penny, Eyebrow } from './components/ui.jsx';
 
-const VERSION = '1.3.1';
-const BUILD = 31;
-const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.3.1/MoneyTracker-v1.3.1.apk';
+const VERSION = '1.4.0';
+const BUILD = 32;
+const APK_URL = 'https://github.com/ronazpradhan/money-tracker-web/releases/download/v1.4.0/MoneyTracker-v1.4.0.apk';
 
 const WHATS_NEW = [
-  ['Smoother Amount Entry', 'Typing is steady, numbers always fit on screen, and amounts go up to 9,999,999.'],
-  ['Haptics Switch', 'Turn vibrations off any time in Profile > Preferences.'],
-  ['Fits Every Phone', "One clean text size that follows your phone's font setting, and layouts that fit small screens."],
-  ['Categories Without the Popup', 'Pick a category right inside the card, and swipe to switch expense and income.'],
-  ['Edit Anything', 'Change the amount, type, who you paid, date, note or photos from History.'],
+  ['Backup and Restore', 'Save everything, photos included, to Google Drive. Restore it on any phone.'],
+  ['A Warmer Welcome', "Penny learns your name, you pick a look, and you're ready in four taps."],
+  ['Fresh Look', 'Colourful category icons, a new theme page, and cleaner language and currency pickers.'],
+  ['Camera Fixed', 'Taking a receipt photo no longer locks the app.'],
   ['Easier App Lock', 'Set a code, enter it again, answer one question. Done.'],
+  ['Haptics Switch', 'Turn vibrations off any time in Profile > Preferences.'],
 ];
 
 const STEPS = [
